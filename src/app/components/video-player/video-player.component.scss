@@ -1,0 +1,18 @@
+.video {
+  z-index: 5;
+  position: fixed;
+  top: 46px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  video {
+    width: 100%;
+  }
+
+  vg-controls {
+    height: 80px !important;
+  }
+
+}
+

@@ -1,0 +1,46 @@
+@import "../sass/variables";
+
+
+.theme-light {
+
+  .overlay {
+    background-color: white;
+  }
+
+  .vg-icon-volume_up:before,
+  .vg-icon-volume_off:before,
+  .vg-icon-volume_off:before,
+  .vg-icon-volume_mute:before,
+  .vg-icon-volume_down:before,
+  vg-play-pause .vg-icon-play_arrow::before,
+  vg-play-pause .vg-icon-pause::before,
+  .vg-icon-fullscreen:before,
+  .vg-icon-fullscreen_exit:before,
+  .controls__icon--next::before,
+  .controls__icon--prev::before,
+  .controls__icon--shuffle::before,
+  .controls__icon--repeat::before {
+    color: black;
+  }
+
+  vg-scrub-bar-current-time {
+    background-color: #d5d5d5;
+  }
+
+  vg-scrub-bar-current-time .background {
+    background-color: black !important;
+    border: 1px solid black !important;
+  }
+
+  vg-time-display {
+    color: black !important;
+  }
+
+  vg-volume .volumeValue {
+    background-color: #00c400 !important;
+  }
+
+  vg-volume .volumeBackground {
+    background-color: #d5d5d5 !important;
+  }
+}

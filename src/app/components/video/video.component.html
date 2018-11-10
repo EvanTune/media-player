@@ -1,0 +1,9 @@
+<app-sidebar [type]="type"></app-sidebar>
+
+<div class="content">
+  <app-list [type]="type" [items]="videos" (showVideoPlayer)="showVideoPlayer=true"></app-list>
+</div>
+
+<app-video-player *ngIf="showVideoPlayer"></app-video-player>
+
+

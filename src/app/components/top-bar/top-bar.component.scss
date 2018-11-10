@@ -1,0 +1,137 @@
+@import "../../sass/variables";
+
+.top-bar {
+  height: 38px;
+  background-color: $darkest;
+  z-index: 5;
+  position: relative;
+  padding: 4px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+    height: 100%;
+  }
+
+  &__left {
+    -webkit-app-region: no-drag;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    -webkit-app-region: no-drag;
+    margin-right: 10px;
+  }
+
+  &__icon {
+    color: #919191;
+    margin-right: 18px;
+  }
+
+  &__icon--close {
+    margin-right: 0px;
+  }
+
+  &__icon--maximize {
+    font-size: 0.8rem;
+  }
+
+  &__icon:hover {
+    color: white;
+  }
+
+  &__settings {
+    color: #737373;
+    font-size: 15px;
+    margin-right: 20px;
+  }
+
+  &__mode {
+    color: #737373;
+    font-size: 15px;
+    margin-right: 20px;
+  }
+}
+
+.logo {
+
+  display: flex;
+  align-items: center;
+
+  &__text {
+    font-size: 10px;
+    color: #c3c3c3;
+    letter-spacing: 0.5px;
+  }
+
+  &__text--bold {
+    font-weight: 600;
+    color: #d7d7d7;
+    display: inline-block;
+    margin-right: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  &__icon {
+    background: linear-gradient($secondary, $primary);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-right: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+}
+
+.top-menu {
+
+  display: flex;
+  align-items: center;
+  margin-left: 60px;
+
+  &__item {
+    color: #878787;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 0 18px;
+    height: 38px;
+    font-weight: 600;
+    transition: 0.15s all;
+  }
+
+  &__item:focus {
+    outline: none;
+  }
+
+  &__item:hover {
+    cursor: pointer;
+    color: $primary;
+  }
+
+  &__item--active {
+    color: $primary;
+  }
+
+  &__active {
+
+  }
+
+  &__icon {
+    margin-right: 12px;
+    font-size: 13px;
+  }
+
+  &__text {
+
+  }
+
+}

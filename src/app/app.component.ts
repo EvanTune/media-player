@@ -9,6 +9,9 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  showVideo: boolean;
+
   constructor(public electronService: ElectronService,
     private translate: TranslateService) {
 

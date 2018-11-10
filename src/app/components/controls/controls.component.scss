@@ -1,0 +1,83 @@
+@import "../../sass/variables";
+
+.controls {
+
+  height: 100%;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  background-color: $darker;
+  display: flex;
+  flex-direction: column;
+
+  &__top {
+    height: 5px;
+  }
+
+  &__bottom {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  &__left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 140px;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    margin: 0 75px;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    width: 140px;
+  }
+
+  &__play {
+    font-size: 30px;
+    margin: 0 40px;
+  }
+
+  &__icon {
+    font-size: 17px;
+  }
+
+  &__icon--small {
+    font-size: 20px;
+  }
+
+  &__icon--prev:before {
+    content: "\f048" !important;
+  }
+
+  &__icon--next:before {
+    content: "\f051" !important;
+  }
+
+  &__icon--shuffle:before {
+    margin-right: 25px;
+    content: "\f074" !important;
+  }
+
+  &__icon--repeat:before {
+    content: "\f363" !important;
+  }
+
+  &__time {
+    position: absolute;
+    display: flex;
+    right: 35px;
+    align-items: center;
+    height: 80px;
+  }
+
+
+
+}

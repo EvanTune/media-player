@@ -1,0 +1,24 @@
+.action-bar {
+  height: 42px;
+  background-color: white;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__sort {
+    color: #a0a0a0;
+    font-size: 13px;
+  }
+
+  &__back-icon {
+    font-size: 15px;
+    margin-left: 20px;
+  }
+}

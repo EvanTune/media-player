@@ -1,0 +1,8 @@
+<app-sidebar [type]="type" (sidebarChanged)="setState($event)"></app-sidebar>
+
+<div class="content">
+  <app-list *ngIf="listMode" [type]="type" [items]="music"></app-list>
+  <app-grid *ngIf="!listMode" [type]="type" [items]="music"></app-grid>
+</div>
+
+<app-controls-bar></app-controls-bar>

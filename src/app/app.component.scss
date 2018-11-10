@@ -1,0 +1,21 @@
+@import "sass/variables";
+
+.overlay {
+  background-color: $darker;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.main {
+  z-index: 5;
+  background-color: $darker;
+  position: absolute;
+  top: 46px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

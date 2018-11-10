@@ -1,0 +1,30 @@
+@import "../../sass/variables";
+
+.list {
+
+  tr th {
+    color: #9b9b9b;
+    font-weight: 500;
+    text-align: left;
+    font-size: 12px;
+    padding: 6px 6px 12px 6px;
+  }
+
+  tr td {
+    color: #f5f5f5;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  table tr:nth-child(1):hover  {
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  table tr:hover td  {
+    color: white;
+    background-color: rgba(255, 105, 0, 0.41);
+  }
+
+}

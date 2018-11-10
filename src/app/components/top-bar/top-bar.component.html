@@ -1,0 +1,37 @@
+<div class="top-bar">
+
+  <div class="top-bar__container">
+    <div class="top-bar__left">
+      <div class="logo">
+        <i class="logo__icon fas fa-play"></i>
+        <span class="logo__text"><span class="logo__text--bold">ET</span> Media Player</span>
+      </div>
+
+      <div class="top-menu">
+        <div [class]="setActiveClass('/')" routerLink="/">
+          <i class="top-menu__icon fas fa-music"></i>
+          <div class="top-menu__text">Music</div>
+        </div>
+        <div [class]="setActiveClass('/videos')" routerLink="/videos">
+          <i class="top-menu__icon fas fa-video"></i>
+          <div class="top-menu__text">Videos</div>
+        </div>
+        <div [class]="setActiveClass('/images')" routerLink="/images">
+          <i class="top-menu__icon fas fa-camera-alt"></i>
+          <div class="top-menu__text">Images</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="top-bar__right">
+      <i class="top-bar__settings fas fa-cog" (click)="stateService.setState('albumsList', true)"></i>
+      <i class="top-bar__mode fas fa-th" *ngIf="!showList"></i>
+      <i class="top-bar__mode fas fa-list-ul" *ngIf="showList"></i>
+      <app-search></app-search>
+      <i class="top-bar__icon icon ion-md-remove" (click)="minimizeWindow()"></i>
+      <i class="top-bar__icon top-bar__icon--maximize icon ion-md-square-outline" (click)="maximizeWindow()"></i>
+      <i class="top-bar__icon top-bar__icon--close icon ion-md-close" (click)="closeWindow()"></i>
+    </div>
+  </div>
+
+</div>

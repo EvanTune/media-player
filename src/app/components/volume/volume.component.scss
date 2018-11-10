@@ -1,0 +1,39 @@
+.volume {
+
+  display: flex;
+  align-items: center;
+
+  &__bar {
+    width: 120px;
+    height: 8px;
+    background-color: #dddddd;
+    border-radius: 10px;
+  }
+
+  &__bar-inner {
+    height: 8px;
+    width: 50%;
+    background: #00b400;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  &__dot {
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: -5px;
+  }
+
+  &__text {
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 10px;
+    color: #666666;
+  }
+
+}

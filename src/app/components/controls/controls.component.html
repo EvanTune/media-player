@@ -1,0 +1,65 @@
+<div class="controls">
+
+  <div class="controls__top">
+
+    <vg-scrub-bar>
+      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+  </div>
+
+  <div class="controls__bottom">
+
+    <app-track-info></app-track-info>
+
+    <div class="controls__left">
+      <div class="controls__icon controls__icon--shuffle"></div>
+      <div class="controls__icon controls__icon--repeat"></div>
+    </div>
+    <div class="controls__center">
+      <div class="controls__icon controls__icon--prev"></div>
+      <vg-play-pause></vg-play-pause>
+      <div class="controls__icon controls__icon--next"></div>
+    </div>
+    <div class="controls__right">
+      <vg-mute></vg-mute>
+      <vg-volume></vg-volume>
+      <vg-fullscreen *ngIf="type === 'video'"></vg-fullscreen>
+    </div>
+
+    <div class="controls__time">
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!--
+  <vg-playback-button></vg-playback-button>
+-->
+  <!--
+  <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+-->
+
+
+  <!--
+  <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+  <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+-->
+
+  <!--
+  <vg-track-selector></vg-track-selector>
+  -->
+
+
+
+
+</div>

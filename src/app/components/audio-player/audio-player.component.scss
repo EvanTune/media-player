@@ -1,0 +1,24 @@
+@import "../../sass/variables";
+
+.audio-player {
+  position: fixed;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  background-color: $darker;
+  z-index: 5;
+  transition: 0.25s all linear;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 40px;
+    position: relative;
+  }
+
+  &__bottom {
+
+  }
+
+}

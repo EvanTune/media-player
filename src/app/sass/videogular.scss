@@ -1,0 +1,171 @@
+/**********************************
+  PLAY
+**********************************/
+vg-play-pause .vg-icon-play_arrow::before {
+  content: "\f04b";
+}
+
+vg-play-pause .vg-icon-pause::before {
+  content: "\f04c";
+}
+
+vg-play-pause {
+  margin: 0 40px;
+}
+
+
+vg-player {
+  font-family: inherit !important;
+}
+
+/**********************************
+  SCRUB
+**********************************/
+vg-scrub-bar-current-time {
+  background-color: #737373;
+  //height: 5px !important;
+}
+
+vg-scrub-bar-current-time .background {
+  background-color: $primary !important;
+  border: 1px solid $primary !important;
+  z-index: 5;
+}
+vg-controls vg-scrub-bar {
+  height: 5px !important;
+  margin: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: auto !important;
+
+}
+
+vg-time-display {
+  height: 100% !important;
+  color: #cdcdcd !important;
+  align-items: center !important;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+vg-controls vg-scrub-bar-current-time {
+  border-radius: 20px !important;
+}
+
+vg-controls vg-scrub-bar-current-time .background {
+  border-radius: 20px !important;
+}
+
+vg-scrub-bar .scrubBar:focus {
+  outline: none;
+}
+
+
+/**********************************
+  VOLUME
+**********************************/
+vg-volume .volumeValue {
+  background-color: $primary !important;
+  height: 3px !important;
+}
+
+vg-volume .volumeBackground {
+  background-color: #737373 !important;
+  height: 3px !important;
+}
+
+vg-volume .volumeKnob {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  height: 13px !important;
+  width: 13px !important;
+}
+
+.vg-icon-volume_up:before,
+.vg-icon-volume_off:before,
+.vg-icon-volume_mute:before,
+.vg-icon-volume_down:before {
+  font-size: 17px;
+}
+
+.vg-icon-volume_up:before {
+  content: "\f028" !important;
+}
+
+.vg-icon-volume_off:before {
+  content: "\f6a9" !important;
+}
+
+.vg-icon-volume_mute:before {
+  content: "\f026" !important;
+}
+
+.vg-icon-volume_down:before {
+  content: "\f027" !important;
+}
+
+vg-volume .volumeBar:focus {
+  outline: none !important;
+}
+
+
+/**********************************
+  CONTROLS
+**********************************/
+vg-controls.hide {
+  bottom: -120px !important;
+}
+
+vg-controls {
+  transition: bottom 0.25s linear !important;
+  height: 80px !important;
+}
+
+
+/**********************************
+  MUTE
+**********************************/
+vg-mute {
+  height: 30px !important;
+  width: 30px !important;
+  margin-right: 8px !important;
+}
+
+
+.vg-icon-fullscreen:before {
+  content: "\f065" !important;
+  font-size: 20px;
+}
+
+.vg-icon-fullscreen_exit:before {
+  content: "\f066" !important;
+  font-size: 20px;
+}
+
+vg-fullscreen {
+  position: absolute;
+  right: 20px;
+}
+
+
+.vg-icon-volume_up:before,
+.vg-icon-volume_off:before,
+.vg-icon-volume_off:before,
+.vg-icon-volume_mute:before,
+.vg-icon-volume_down:before,
+.vg-icon-volume_up:before,
+vg-play-pause .vg-icon-play_arrow::before,
+vg-play-pause .vg-icon-pause::before,
+.vg-icon-fullscreen:before,
+.vg-icon-fullscreen_exit:before,
+.controls__icon--next::before,
+.controls__icon--prev::before,
+.controls__icon--shuffle::before,
+.controls__icon--repeat::before {
+  font-weight: 600;
+  font-family: 'Font Awesome 5 Pro', sans-serif;
+  color: #d7d7d7;
+}
+
+vg-play-pause .vg-icon-pause::before {
+  color: $primary;
+}

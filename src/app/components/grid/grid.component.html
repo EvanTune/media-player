@@ -1,0 +1,10 @@
+<div class="grid">
+
+  <ng-container *ngFor="let item of items">
+    <div class="grid__item" (click)="openVideo.emit()">
+      <img class="grid__img" src="./assets/img/album-cover.jpg" alt="">
+      <h3 class="grid__title">Video name</h3>
+    </div>
+  </ng-container>
+  
+</div>
