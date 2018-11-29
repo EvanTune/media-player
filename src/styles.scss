@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 // Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700);
 @import url("../node_modules/@fortawesome/fontawesome-pro/css/all.min.css");
 @import "app/sass/variables";
 @import "app/sass/videogular";
@@ -11,16 +11,106 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
+  background-color: $darker;
+}
+
+.main {
+
 }
 
 .content {
   position: absolute;
-  top: 20px;
-  left: 210px;
-  right: 20px;
-  bottom: 100px;
+  top: 34px;
+  left: 200px;
+  right: 0;
+  bottom: 70px;
+}
+
+.content__full {
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  position: absolute;
+}
+
+.content__left {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 280px;
+  bottom: 25px;
+}
+
+.content__right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  bottom: 0;
+  background-color: $dark;
+}
+
+.header-main {
+  font-size: 24px;
+  color: #d7d7d7;
+  font-weight: 400;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  margin-top: 0;
 }
 
 
+
+input[type='checkbox'] {display:none;}
+input[type='checkbox'] + label:before {
+  font-family: 'Font Awesome 5 Pro', sans-serif;
+  display: inline-block;
+  color: white;
+}
+/* unchecked */
+input[type='checkbox'] + label:before {
+  content: "\f0c8";
+  font-weight:600;
+  color: white;
+}
+/* checked */
+input[type='checkbox']:checked + label:before {
+  content: "\f14a";
+  font-weight:600;
+  color: #ff5200;
+}
+
+
+
+.tab-menu {
+
+  &__item {
+    color: #919191;
+    margin-right: 25px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    transition: 0.1s all;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  &__item:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+  &__item:focus {
+    outline: none;
+  }
+
+  &__item--active {
+    color: white;
+  }
+
+}

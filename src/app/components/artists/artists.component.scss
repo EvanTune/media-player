@@ -1,0 +1,29 @@
+.artists {
+
+  &__item {
+    margin: 5px 20px 0 0;
+    height: 120px;
+    width: 120px;
+    float: left;
+  }
+
+  &__item:hover {
+    cursor: pointer;
+  }
+
+  &__img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  &__name {
+    color: #ebebeb;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+}

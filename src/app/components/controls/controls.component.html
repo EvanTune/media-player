@@ -11,11 +11,16 @@
 
   <div class="controls__bottom">
 
-    <app-track-info></app-track-info>
+    <div class="controls__current-time" *ngIf="trackInfo['path']">
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+    </div>
+
+    <app-track-info [trackInfo]="trackInfo"></app-track-info>
 
     <div class="controls__left">
       <div class="controls__icon controls__icon--shuffle"></div>
       <div class="controls__icon controls__icon--repeat"></div>
+
     </div>
     <div class="controls__center">
       <div class="controls__icon controls__icon--prev"></div>
@@ -28,11 +33,9 @@
       <vg-fullscreen *ngIf="type === 'video'"></vg-fullscreen>
     </div>
 
-    <div class="controls__time">
-      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+    <div class="controls__total-time" *ngIf="trackInfo['path']">
       <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
     </div>
-
 
   </div>
 

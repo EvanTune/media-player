@@ -1,65 +1,53 @@
 <div class="sidebar">
 
-  <ng-container *ngIf="type.includes('music')">
-    <h3 class="sidebar__header">Music library</h3>
+  <ng-container>
+    <!--
+        <i class="sidebar__back fas fa-chevron-left" (click)="goBack()"></i> -->
+
+    <div class="sidebar-search">
+      <input class="sidebar-search__input" type="text" placeholder="Search here ...">
+      <i class="sidebar-search__icon fas fa-search"></i>
+    </div>
+
     <ul class="sidebar__list">
       <li>
-        <div [class]="setActiveClass('music-songs')" (click)="setType('music-songs')">
-          Songs
+        <div [class]="musicActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="music"
+             (click)="setActiveClass()">
+          <i class="sidebar__icon fas fa-music"></i> Music
+        </div>
+      </li>
+
+      <li>
+        <div [class]="videosActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="videos">
+          <i class="sidebar__icon fas fa-video"></i> Videos
         </div>
       </li>
       <li>
-        <div [class]="setActiveClass('music-albums')" (click)="setType('music-albums')">
-          Albums
+        <div [class]="false ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="playlist">
+          <i class="sidebar__icon fas fa-list-ul"></i> Playlists
         </div>
       </li>
       <li>
-        <div [class]="setActiveClass('music-artists')" (click)="setType('music-artists')">
-          Artists
-        </div>
-      </li>
-    </ul>
-
-    <h3 class="sidebar__header">Music playlists <i class="sidebar__add-icon fas fa-plus"></i></h3>
-    <ul class="sidebar__list">
-      <li><div [class]="setActiveClass('music-playlist-my-favourites')" (click)="setType('music-playlist-my-favourites')">My favourites</div></li>
-      <li><div [class]="setActiveClass('music-playlist-some-music')" (click)="setType('music-playlist-some-music')">Some music</div></li>
-      <li><div [class]="setActiveClass('music-playlist-musica')" (click)="setType('music-playlist-musica')">Musica</div></li>
-
-    </ul>
-  </ng-container>
-
-  <ng-container *ngIf="type.includes('videos')">
-    <h3 class="sidebar__header">Video library</h3>
-    <ul class="sidebar__list">
-      <li>
-        <div [class]="setActiveClass('videos')" (click)="setType('videos')">
-          All videos
+        <div [class]="settingsActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="settings/general">
+          <i class="sidebar__icon fas fa-cog"></i> Settings
         </div>
       </li>
     </ul>
 
-    <h3 class="sidebar__header">Video playlists <i class="sidebar__add-icon fas fa-plus"></i></h3>
-    <ul class="sidebar__list">
-      <li><div [class]="setActiveClass('videos-fav')" (click)="setType('videos-fav')">My fav videos</div></li>
-    </ul>
-  </ng-container>
+    <!--
 
+    <div class="sidebar-playlist">
+      <h3 class="sidebar-playlist__heading"><i class=" sidebar-playlist__list-icon fas fa-list-ul"></i> Playlists</h3>
+      <div class="sidebar-playlist__add fas fa-plus"></div>
+      <ul class="sidebar-playlist__list">
+        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> My songs</li>
+        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> Songs I like</li>
+        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> Favourites</li>
+      </ul>
+    </div>
 
-  <ng-container *ngIf="type.includes('images')">
-    <h3 class="sidebar__header">Image library</h3>
-    <ul class="sidebar__list">
-      <li>
-        <div [class]="setActiveClass('images')" (click)="setType('images')">
-          All images
-        </div>
-      </li>
-    </ul>
+-->
 
-    <h3 class="sidebar__header">Image playlists <i class="sidebar__add-icon fas fa-plus"></i></h3>
-    <ul class="sidebar__list">
-      <li><div [class]="setActiveClass('images-fav')" (click)="setType('images-fav')">My fav images</div></li>
-    </ul>
   </ng-container>
 
 

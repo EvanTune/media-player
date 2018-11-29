@@ -1,10 +1,14 @@
-<div class="">
+<div [class]="themeClass">
 
   <app-top-bar></app-top-bar>
+  <app-sidebar></app-sidebar>
 
+  <button routerLink="music">ff</button>
   <main class="main">
     <router-outlet></router-outlet>
   </main>
+
+  <app-audio-player></app-audio-player>
 
 </div>
 

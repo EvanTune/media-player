@@ -1,0 +1,71 @@
+@import "../../../sass/variables";
+
+.music-folders {
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    margin-top: 22px;
+  }
+
+  &__item {
+    color: #e1e1e1;
+    list-style: none;
+    font-size: 14px;
+    padding: 7px 0;
+    display: flex;
+    align-items: center;
+    transition: 0.1s all;
+    letter-spacing: 0.2px;
+    padding-left: 2px;
+  }
+
+  &__item:hover {
+    color: #ff2831;
+    cursor: pointer;
+  }
+
+  &__icon {
+    margin-right: 15px;
+  }
+
+  &__remove-btn {
+    margin-left: 10px;
+  }
+
+  &__add-folders,
+  &__scan-folders {
+    background-color: #2d2d2d;
+    padding: 11px 12px;
+    color: #d7d7d7;
+    font-size: 13px;
+    border-radius: 3px;
+    border: 1px solid black;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  &__add-folders:hover,
+  &__scan-folders:hover {
+    background-color: #232323;
+  }
+
+  &__add-folders {
+
+  }
+
+  &__scan-folders {
+    margin-left: 20px;
+  }
+
+  &__add-folders-icon,
+  &__scan-folders-icon {
+    margin-right: 5px;
+  }
+
+  &__loader {
+    height: 40px;
+    width: 40px;
+  }
+
+}

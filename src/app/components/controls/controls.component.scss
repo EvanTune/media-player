@@ -6,20 +6,19 @@
   position: absolute;
   z-index: 5;
   width: 100%;
-  background-color: $darker;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
 
   &__top {
-    height: 5px;
+    height: 16px;
   }
 
   &__bottom {
-    height: 80px;
+    height: 93px;
     display: flex;
     justify-content: center;
   }
-
 
   &__left {
     display: flex;
@@ -41,7 +40,7 @@
   }
 
   &__play {
-    font-size: 30px;
+    font-size: 18px;
     margin: 0 40px;
   }
 
@@ -70,12 +69,20 @@
     content: "\f363" !important;
   }
 
-  &__time {
+  &__total-time {
     position: absolute;
     display: flex;
-    right: 35px;
+    right: 20px;
     align-items: center;
-    height: 80px;
+    height: 69px;
+  }
+
+  &__current-time {
+    position: absolute;
+    display: flex;
+    left: 20px;
+    align-items: center;
+    height: 69px;
   }
 
 

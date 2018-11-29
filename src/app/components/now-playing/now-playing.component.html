@@ -1,0 +1,13 @@
+<div class="now-playing">
+  <div class="now-playing__container">
+    <div class="now-playing__header">Now playing</div>
+    <div class="now-playing__img-container" [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0)), url(assets/img/albums/' + playingTrack['album-dashed'] + '.png) center center / cover'}">
+
+
+    </div>
+    <div class="now-playing__title">{{ playingTrack['title'] }}</div>
+    <div class="now-playing__album">{{ playingTrack['album'] }}</div>
+    <div class="now-playing__artist">{{ playingTrack['artist'] }}</div>
+  </div>
+
+</div>

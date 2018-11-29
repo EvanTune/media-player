@@ -10,8 +10,9 @@ import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
 
 import {HttpClientModule, HttpClient} from '@angular/common/http';
-
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import {AppRoutingModule} from './app-routing.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // NG Translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -40,6 +41,22 @@ import { ListComponent } from './components/list/list.component';
 import { GridComponent } from './components/grid/grid.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ControlsBarComponent } from './components/controls-bar/controls-bar.component';
+import { SongsComponent } from './components/songs/songs.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { ArtistsComponent } from './components/artists/artists.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { NowPlayingComponent } from './components/now-playing/now-playing.component';
+import { EtTableComponent } from './components/et-table/et-table.component';
+import { AlbumComponent } from './components/album/album.component';
+import { ArtistComponent } from './components/artist/artist.component';
+import { RecentlyPlayedComponent } from './components/recently-played/recently-played.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { MainComponent } from './components/main/main.component';
+import { GeneralComponent } from './components/settings/general/general.component';
+import { MusicFoldersComponent } from './components/settings/music-folders/music-folders.component';
+import { VideoFoldersComponent } from './components/settings/video-folders/video-folders.component';
+import { ColorThemeComponent } from './components/settings/color-theme/color-theme.component';
+import { ProgressComponent } from './components/progress/progress.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -67,7 +84,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListComponent,
     GridComponent,
     MenuComponent,
-    ControlsBarComponent
+    ControlsBarComponent,
+    SongsComponent,
+    AlbumsComponent,
+    ArtistsComponent,
+    PlaylistComponent,
+    NowPlayingComponent,
+    EtTableComponent,
+    AlbumComponent,
+    ArtistComponent,
+    RecentlyPlayedComponent,
+    SettingsComponent,
+    MainComponent,
+    GeneralComponent,
+    MusicFoldersComponent,
+    VideoFoldersComponent,
+    ColorThemeComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +111,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    NgScrollbarModule,
+    NgxDatatableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,0 +1,92 @@
+@import "../../sass/variables";
+
+.now-playing {
+  position: relative;
+  height: 100%;
+
+  &__container {
+    height: 370px;
+    width: 250px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  &__img-container {
+    position: absolute;
+    height: 210px;
+    width: 210px;
+    bottom: 20px;
+    left: 20px;
+    top: 60px;
+    right: 20px;
+    border-radius: 2px;
+    text-align: center;
+    border: 1px solid black;
+  }
+
+  &__list {
+    position: relative;
+    height: 100%;
+    margin-left: 20px;
+  }
+
+  ng-scrollbar {
+    height: calc(100% - 75px);
+  }
+
+  &__header {
+    padding: 20px 0 15px 20px;
+    color: #ebebeb;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    color: #919191;
+    font-size: 12px;
+    padding: 5px 0;
+  }
+
+  &__title,
+  &__album,
+  &__artist {
+    right: 20px;
+    position: absolute;
+    font-size: 12px;
+
+  }
+
+  &__title {
+    color: $primary;
+    top: 290px;
+    left: 20px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  &__album {
+    top: 312px;
+    left: 20px;
+    color: #919191;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  &__artist {
+    top: 335px;
+    left: 20px;
+    color: #cdcdcd;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
+  }
+
+}

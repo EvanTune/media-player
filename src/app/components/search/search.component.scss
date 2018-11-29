@@ -2,7 +2,9 @@
 
 .search {
   margin-left: 20px;
-  margin-right: 50px;
+  position: absolute;
+  right: 0;
+  top: 10px;
 
   &__container {
     position: relative;
@@ -10,7 +12,7 @@
 
   &__icon {
     position: absolute;
-    top: 10px;
+    top: 11px;
     left: 13px;
     font-size: 12px;
     color: #737373;
@@ -18,13 +20,14 @@
 
   &__input {
     padding-left: 35px;
-    height: 28px;
+    height: 30px;
     border-radius: 3px;
-    background-color: $darker;
-    border: none;
+    background-color: $dark;
     font-size: 12px;
     //background-color: #f0f0f0;
     color: #737373;
+    min-width: 180px;
+    border: 1px solid #1e1e1e;
   }
 
   &__input::placeholder  {

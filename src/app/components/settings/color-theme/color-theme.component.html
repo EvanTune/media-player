@@ -1,0 +1,21 @@
+<div class="color-theme">
+
+  <div [class]="setClasses('theme-dark')" (click)="setTheme('theme-dark')">
+    <div class="color-theme__window">
+      <div class="color-theme__top-bar"></div>
+      <div class="color-theme__sidebar"></div>
+      <div class="color-theme__main"></div>
+    </div>
+    <div class="color-theme__heading">Dark theme</div>
+  </div>
+
+  <div [class]="setClasses('theme-light')" (click)="setTheme('theme-light')">
+    <div class="color-theme__window">
+      <div class="color-theme__top-bar"></div>
+      <div class="color-theme__sidebar"></div>
+      <div class="color-theme__main"></div>
+    </div>
+    <div class="color-theme__heading">Light theme</div>
+  </div>
+
+</div>

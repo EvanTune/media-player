@@ -1,0 +1,32 @@
+<div class="et-table">
+    <ng-scrollbar [autoHide]="true">
+    <table class="et-table__table" style="width:100%" border="0" cellspacing="0">
+
+      <thead>
+      <tr>
+        <ng-container *ngFor="let column of columns; let i = index;">
+          <th [class]="setThClasses(column)" *ngIf="column['hide'] < innerWidth" (mouseenter)="sortColumns[i]['mouseHover'] = true"
+              (mouseleave)="sortColumns[i]['mouseHover'] = false" (click)="setSortType(column['name'], i, true)">
+            {{ column['header'] }}
+            <i [class]="manageSortClasses(column['name'], i)"></i>
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+
+      <tbody>
+      <ng-container *ngFor="let item of filteredItems">
+        <tr [class]="setItemClasses(item)" (click)="itemClicked.emit(item)">
+          <ng-container *ngFor="let column of columns">
+            <td [class]="setTdClasses(column)" *ngIf="column['hide'] < innerWidth">
+              {{ setColumnContent(item, column) }}
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+      </tbody>
+
+    </table>
+    </ng-scrollbar>
+
+</div>

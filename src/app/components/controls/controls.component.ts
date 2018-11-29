@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ControlsComponent implements OnInit {
 
   @Input() type;
+  @Input() trackInfo;
 
   constructor() { }
 

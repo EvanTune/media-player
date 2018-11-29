@@ -1,0 +1,11 @@
+<div class="albums">
+
+  <ng-container *ngFor="let item of albums">
+  <div class="albums__item" [routerLink]="'/music/artist/' + item['artist'] + '/album/' + item['album']">
+    <div class="albums__img" [ngStyle]="{'background': 'url(assets/img/albums/' + item['album-dashed'] + '.png) center center / cover'}"></div>
+    <div class="albums__album">{{ item['album'] }}</div>
+    <div class="albums__artist">{{ item['artist'] }}</div>
+  </div>
+  </ng-container>
+
+</div>

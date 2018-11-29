@@ -1,11 +1,228 @@
 @import "../sass/variables";
 
-
 .theme-light {
+
+  background-color: #f0f0f0 !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  .top-bar {
+    background-color: white !important;
+  }
+
+  .sidebar {
+    background-color: #f5f5f5 !important;
+  }
+
+  .content__full {
+    background-color: #f0f0f0 !important;
+  }
+
+  .content__left {
+    background-color: #f0f0f0 !important;
+  }
+
+  .content__right {
+    background-color: #f5f5f5 !important;
+  }
+
+  .main {
+    background-color: #f0f0f0 !important;
+  }
+
+  .controls__bottom {
+    background-color: white !important;
+  }
 
   .overlay {
     background-color: white;
   }
+
+  .header-main {
+    color: #0f0f0f;
+  }
+
+  // Logo
+  .logo {
+
+    &__text {
+      color: #4b4b4b !important;
+    }
+
+    &__text--bold {
+      color: black !important;
+    }
+
+  }
+
+  // Tab Menu
+  .tab-menu {
+
+    &__item {
+
+    }
+
+    &__item:hover,
+    &__item--active {
+      color: black !important;
+    }
+  }
+
+  // Top bar
+  .top-bar {
+    &__icon {
+      color: #373737 !important;
+    }
+  }
+
+  // sidebar {
+
+  .sidebar {
+
+    &__item {
+      color: #696969 !important;
+      font-weight: 500 !important;
+    }
+
+    &__item:hover {
+      color: black !important;
+    }
+
+    &__item--active {
+      background-color: white !important;
+      color: black !important;
+      font-weight: 600 !important;
+    }
+
+  }
+
+  // ET-TABLE
+  .et-table {
+
+    &__item {
+      color: black !important;
+    }
+
+    &__td--faded {
+      color: #5f5f5f !important;
+    }
+
+    th {
+      background-color: #f5f5f5 !important;
+    }
+
+    &__item {
+      background-color: #f0f0f0 !important;
+    }
+
+    &__item:nth-child(2n) {
+      background-color: #f5f5f5 !important;
+    }
+
+    &__item--active {
+      color: $primary !important;
+
+      .et-table__td {
+        color: $primary !important;
+      }
+    }
+
+    &__item:hover {
+      color: $primary !important;
+      cursor: pointer;
+
+      .et-table__td {
+        color: $primary !important;
+      }
+
+    }
+
+  }
+
+
+  // Recently Played
+  .recently-played {
+
+    &__header {
+      color: black !important;
+    }
+
+    &__item {
+
+    }
+
+    &__item--1 {
+      color: rgba(0,0,0,0.7) !important;
+    }
+
+    &__item--2 {
+      color: rgba(0,0,0,0.6) !important;
+    }
+
+    &__item--3 {
+      color: rgba(0,0,0,0.5) !important;
+    }
+
+    &__item--4 {
+      color: rgba(0,0,0,0.4) !important;
+    }
+
+    &__item--5 {
+      color: rgba(0,0,0,0.3) !important;
+    }
+
+    &__item--6 {
+      color: rgba(0,0,0,0.2) !important;
+    }
+
+  }
+
+  // Now Playing
+  .now-playing {
+    &__header {
+      color: black !important;
+    }
+
+    &__album {
+      color: black !important;
+    }
+
+    &__artist {
+      color: black !important;
+    }
+
+  }
+
+  // Color Theme
+  .color-theme {
+
+    &__heading {
+      color: black !important;
+    }
+
+  }
+
+  // Track Info
+  .track-info {
+
+    &__name {
+      color: black !important;
+    }
+
+    &__desc {
+      color: #363636 !important;
+    }
+
+    &__img {
+      border: 1px solid transparent !important;
+    }
+
+  }
+
+  // VIDEOANGULAR
 
   .vg-icon-volume_up:before,
   .vg-icon-volume_off:before,
@@ -21,15 +238,20 @@
   .controls__icon--shuffle::before,
   .controls__icon--repeat::before {
     color: black;
+    background-color: white !important;
   }
 
   vg-scrub-bar-current-time {
-    background-color: #d5d5d5;
+    background-color: #c3c3c3;
+  }
+
+  vg-scrub-bar-current-time .background::after {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   vg-scrub-bar-current-time .background {
-    background-color: black !important;
-    border: 1px solid black !important;
+    background-color: #373737 !important;
+    border: 1px solid #373737 !important;
   }
 
   vg-time-display {
@@ -43,4 +265,52 @@
   vg-volume .volumeBackground {
     background-color: #d5d5d5 !important;
   }
+
+  .album {
+
+    &__title {
+      color: black !important;
+    }
+
+  }
+
+  // Settings
+
+  .music-folders {
+
+    &__add-folders,
+    &__scan-folders {
+      background-color: #d7d7d7 !important;
+      color: #373737 !important;
+      border: 1px solid #cdcdcd !important;
+    }
+
+    &__add-folders:hover,
+    &__scan-folders:hover {
+      background-color: #c3c3c3 !important;
+    }
+
+    &__item {
+      color: black !important;
+    }
+
+    &__item:hover {
+      color: red !important;
+    }
+
+  }
+
+  .progress {
+    background-color: rgba(255,255,255,0.85) !important;
+
+    &__window {
+      background-color: #e1e1e1 !important;
+      box-shadow: 0 0 12px 1px rgba(0,0,0,0.1);
+    }
+
+    &__heading {
+      color: black !important;
+    }
+  }
+
 }

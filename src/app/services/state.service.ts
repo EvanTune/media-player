@@ -1,46 +1,34 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, ReplaySubject} from 'rxjs';
+import ElectronStore from 'electron-store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-  public state = new BehaviorSubject({
-    'type': 'music-songs',
-    'songsList': true,
-    'albumsList': false,
-    'artistsList': false,
-    'videosList': false,
-    'imagesList': false,
-  });
+  store = new ElectronStore();
+  public colorTheme = new BehaviorSubject<string>('theme-dark');
+  musicFolders = new BehaviorSubject<any>([]);
 
-  constructor() {}
 
-  getStateValues() {
-    return this.state.value;
+
+  setTheme(newTheme) {
+    this.colorTheme.next(newTheme);
+    this.store.set('color-theme', newTheme);
   }
 
-  getStateValue(key) {
-    return this.state.value[key];
-  }
+  getTheme() {
 
-  setState(key, value) {
-    const state = this.state.value;
-    state[key] = value;
-    this.state.next(state);
-    return this.state.value[key];
-  }
+    const preTheme = this.store.get('color-theme');
 
-  isListMode() {
-    if (this.state.value['songsList'] && this.state.value['type'] === 'music-songs') {
-      return true;
-    } else if (this.state.value['albumsList'] && this.state.value['type'] === 'music-albums') {
-      return true;
-    } else if (this.state.value['artistsList'] && this.state.value['type'] === 'music-artists') {
-      return true;
+    if (preTheme) {
+      return preTheme;
+    } else {
+      return 'theme-dark';
     }
-    return false;
+
   }
+
 
 }

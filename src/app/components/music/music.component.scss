@@ -1,0 +1,21 @@
+.music {
+
+  ng-scrollbar {
+    height: calc(100% - 90px);
+  }
+
+  &__back {
+    color: #878787;
+    font-size: 15px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    margin-top: 5px;
+    transition: 0.12s all;
+  }
+
+  &__back:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+}

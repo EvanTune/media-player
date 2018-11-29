@@ -1,0 +1,21 @@
+<div class="album">
+
+  <div class="album__container">
+    <div class="album__img" *ngIf="album" [ngStyle]="{'background': 'url(assets/img/albums/' + album[0]['album-dashed'] + '.png) center center / cover'}"></div>
+
+    <div class="album__info">
+      <div class="album__title">{{ album[0]['album'] }}</div>
+      <div class="album__artist">{{ album[0]['artist'] }}</div>
+    </div>
+  </div>
+
+  <app-et-table
+    [playingTrack]="playingTrack"
+    [items]="album"
+    [columns]="columns"
+    [options]="options"
+    (itemClicked)="songClicked($event)">
+  </app-et-table>
+
+
+</div>

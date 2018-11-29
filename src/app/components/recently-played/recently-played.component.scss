@@ -1,0 +1,72 @@
+@import "../../sass/variables";
+
+.recently-played {
+
+  &__container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 40%;
+    padding-top: 15px;
+    z-index: 20;
+  }
+
+  ng-scrollbar {
+    height: calc(100% - 75px);
+  }
+
+  &__header {
+    padding: 20px 0 15px 20px;
+    color: #ebebeb;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  &__list {
+    position: relative;
+    height: 100%;
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__item {
+    list-style: none;
+    color: #919191;
+    font-size: 12px;
+    padding: 5px 0;
+    transition: 0.12s all;
+  }
+
+  &__item:hover {
+    color: $primary !important;
+    cursor: pointer;
+  }
+
+  &__item--1 {
+    color: rgba(255,255,255,0.7);
+  }
+
+  &__item--2 {
+    color: rgba(255,255,255,0.6);
+  }
+
+  &__item--3 {
+    color: rgba(255,255,255,0.5);
+  }
+
+  &__item--4 {
+    color: rgba(255,255,255,0.4);
+  }
+
+  &__item--5 {
+    color: rgba(255,255,255,0.3);
+  }
+
+  &__item--6 {
+    color: rgba(255,255,255,0.2);
+  }
+
+}

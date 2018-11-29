@@ -1,13 +1,16 @@
 /**********************************
   PLAY
 **********************************/
-vg-play-pause .vg-icon-play_arrow::before {
-  content: "\f04b";
+.vg-icon-play_arrow::before {
+  content: "\f04b" !important;
+  font-size: 22px !important;
 }
 
-vg-play-pause .vg-icon-pause::before {
-  content: "\f04c";
+.vg-icon-pause::before {
+  content: "\f04c" !important;
+  font-size: 22px !important;
 }
+
 
 vg-play-pause {
   margin: 0 40px;
@@ -16,23 +19,38 @@ vg-play-pause {
 
 vg-player {
   font-family: inherit !important;
+  background-color: transparent !important;
 }
 
 /**********************************
   SCRUB
 **********************************/
 vg-scrub-bar-current-time {
-  background-color: #737373;
+  background-color: #555555;
   //height: 5px !important;
+  top: calc(50% - 2px) !important;
 }
 
 vg-scrub-bar-current-time .background {
   background-color: $primary !important;
   border: 1px solid $primary !important;
   z-index: 5;
+  position: relative;
 }
+
+vg-scrub-bar-current-time .background::after {
+  content: '';
+  height: 16px;
+  width: 16px;
+  background-color: white;
+  position: absolute;
+  right: -8px;
+  top: -7px;
+  border-radius: 50%;
+}
+
 vg-controls vg-scrub-bar {
-  height: 5px !important;
+  height: 16px !important;
   margin: 0 !important;
   position: absolute !important;
   top: 0 !important;
@@ -60,6 +78,14 @@ vg-scrub-bar .scrubBar:focus {
   outline: none;
 }
 
+vg-controls vg-scrub-bar-buffering-time {
+  top: calc(50% - 2px) !important;
+}
+
+.vg-buffering .loadingSpinner {
+  display: none !important;
+}
+
 
 /**********************************
   VOLUME
@@ -67,6 +93,7 @@ vg-scrub-bar .scrubBar:focus {
 vg-volume .volumeValue {
   background-color: $primary !important;
   height: 3px !important;
+  transition: all 0.15s ease-out !important;
 }
 
 vg-volume .volumeBackground {
@@ -78,6 +105,7 @@ vg-volume .volumeKnob {
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   height: 13px !important;
   width: 13px !important;
+  transition: all 0.15s ease-out !important;
 }
 
 .vg-icon-volume_up:before,
@@ -117,7 +145,8 @@ vg-controls.hide {
 
 vg-controls {
   transition: bottom 0.25s linear !important;
-  height: 80px !important;
+  height: 76px !important;
+  background-color: transparent !important;
 }
 
 
@@ -164,6 +193,7 @@ vg-play-pause .vg-icon-pause::before,
   font-weight: 600;
   font-family: 'Font Awesome 5 Pro', sans-serif;
   color: #d7d7d7;
+  background-color: $darker;
 }
 
 vg-play-pause .vg-icon-pause::before {

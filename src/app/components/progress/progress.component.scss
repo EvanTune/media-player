@@ -1,0 +1,45 @@
+.progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.85);
+  z-index: 99999999999999999999999;
+
+
+  &__window {
+    background-color: #151515;
+    width: 390px;
+    height: 30px;
+    margin: 0 auto;
+    margin-top: calc(50vh - 55px);
+    padding: 30px;
+    text-align: center;
+    //border: 1px solid #4b4b4b;
+    border-radius: 2px;
+    box-shadow: 0 0 12px 1px rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__loader {
+    height: 36px;
+    width: 36px;
+    margin-left: -18px;
+  }
+
+  &__heading {
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
+  &__text {
+    color: #afafaf;
+    font-size: 14px;
+  }
+
+}

@@ -1,10 +1,23 @@
 <div class="grid">
 
   <ng-container *ngFor="let item of items">
-    <div class="grid__item" (click)="openVideo.emit()">
-      <img class="grid__img" src="./assets/img/album-cover.jpg" alt="">
-      <h3 class="grid__title">Video name</h3>
+
+    <div *ngIf="type === 'music-songs'" class="grid__item" (click)="openVideo.emit()">
+      <img class="grid__img" [src]="item['image']" alt="">
+      <h3 class="grid__title">{{ item['title'] ? item['title'] : '-'  }}</h3>
     </div>
+
+    <div *ngIf="type === 'music-albums'" class="grid__item" (click)="openVideo.emit()">
+      <img class="grid__img" [src]="item['image']" alt="">
+      <h3 class="grid__title">{{ item['album'] ? item['album'] : '-'  }}</h3>
+    </div>
+
+    <div *ngIf="type === 'music-artists'" class="grid__item" (click)="openVideo.emit()">
+      <img class="grid__img grid__img--rounded" [src]="item['image']" alt="">
+      <h3 class="grid__title">{{ item['artist'] ? item['artist'] : '-'  }}</h3>
+    </div>
+
   </ng-container>
+
   
 </div>

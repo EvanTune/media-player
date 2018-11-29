@@ -1,8 +1,26 @@
-<app-sidebar [type]="type" (sidebarChanged)="setState($event)"></app-sidebar>
+<div class="content music">
+  <div class="content__left">
 
-<div class="content">
-  <app-list *ngIf="listMode" [type]="type" [items]="music"></app-list>
-  <app-grid *ngIf="!listMode" [type]="type" [items]="music"></app-grid>
+      <div class="header-main">Music</div>
+
+
+      <button *ngIf="showMenu" [class]="setMenuClasses(['/music', '/music/songs'])"  routerLink="/music/songs">Songs</button>
+      <button *ngIf="showMenu" [class]="setMenuClasses(['/music/albums'])"  routerLink="/music/albums">Albums</button>
+      <button *ngIf="showMenu" [class]="setMenuClasses(['/music/artists'])"  routerLink="/music/artists">Artists</button>
+
+       <i *ngIf="!showMenu" class="music__back fas fa-arrow-left" (click)="goBack()"></i>
+
+    <router-outlet></router-outlet>
+
+    <!--
+    <ng-scrollbar [autoHide]="true">
+      <router-outlet></router-outlet>
+    </ng-scrollbar>-->
+  </div>
+  <div class="content__right">
+    <app-recently-played></app-recently-played>
+    <app-now-playing></app-now-playing>
+  </div>
+
 </div>
 
-<app-controls-bar></app-controls-bar>

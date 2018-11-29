@@ -1,0 +1,15 @@
+
+<div class="content">
+  <div class="content__full">
+    <h1 class="header-main">Settings</h1>
+    <div class="tab-menu">
+      <button [class]="activeRoute === '/settings/general' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/general">General</button>
+      <button [class]="activeRoute === '/settings/music-folders' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/music-folders">Music folders</button>
+      <button [class]="activeRoute === '/settings/video-folders' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/video-folders">Video folders</button>
+      <button [class]="activeRoute === '/settings/color-theme' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/color-theme">Color theme</button>
+    </div>
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

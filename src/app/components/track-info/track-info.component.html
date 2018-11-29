@@ -1,8 +1,9 @@
-<div class="track-info">
-  <img class="track-info__img" [src]="src" alt="">
+<div class="track-info" *ngIf="trackInfo">
+  <div class="track-info__img"
+       [ngStyle]="{'background': 'url(assets/img/albums/' + trackInfo['album-dashed'] + '.png) center center / cover'}"></div>
   <div class="track-info__container">
-    <div class="track-info__name">{{ artist }}</div>
-    <div class="track-info__desc">{{ title }}</div>
+    <div class="track-info__name">{{ trackInfo['title'] }}</div>
+    <div class="track-info__desc">{{ trackInfo['artist'] }}</div>
   </div>
 
 </div>

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { StateService } from './list-grid-toggle.service';
+import { StateService } from './state.service';
 
 describe('ListGridToggleService', () => {
   beforeEach(() => {

@@ -1,0 +1,90 @@
+@import "../../sass/variables";
+
+.et-table {
+  color: #ebebeb;
+  height: 100%;
+  overflow: auto;
+  display: block;
+  width: 100%;
+
+  &__table {
+  }
+
+  &__td {
+    padding: 8px 15px 8px 15px;
+    font-size: 14px;
+    min-width: 70px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  &__td--faded {
+    color: #b9b9b9;
+  }
+
+  &__td--small {
+    width: 50px;
+  }
+
+  &__th {
+    text-align: left;
+    padding: 10px 15px;
+    color: #737373;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: $dark;
+    position: sticky;
+    top: 0;
+    transition: 0.15s ease-in-out;
+  }
+
+  &__th:hover {
+    background-color: $darkest;
+    cursor: pointer;
+    color: #ebebeb;
+  }
+
+  &__item {
+    background-color: $darker;
+  }
+
+  &__item--active {
+    color: $primary !important;
+
+    .et-table__td {
+      color: $primary;
+    }
+  }
+
+  &__item:nth-child(2n) {
+    background-color: $dark;
+  }
+
+  &__item:hover {
+    color: $primary;
+    cursor: pointer;
+
+    .et-table__td {
+      color: $primary;
+    }
+
+  }
+
+  &__sort-icon {
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    font-weight: 400;
+    font-size: 18px;
+    opacity: 0;
+  }
+
+  &__sort-icon--visible {
+    opacity: 1;
+  }
+
+  &__sort-icon--active {
+    color: white;
+  }
+
+}

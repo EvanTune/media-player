@@ -1,0 +1,39 @@
+.album {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  bottom: 200px;
+  right: 0;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
+
+  &__img  {
+    height: 170px;
+    width: 170px;
+    border-radius: 2px;
+    border: 1px solid black;
+  }
+
+  &__info {
+    margin-left: 60px;
+  }
+
+
+  &__title {
+    color: #ebebeb;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  &__artist {
+    color: #878787;
+    font-size: 14px;
+  }
+
+}

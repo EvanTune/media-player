@@ -1,14 +1,14 @@
 <div class="audio-player">
-  <vg-player>
+  <vg-player (onPlayerReady)="onPlayerReady($event)">
     <vg-overlay-play></vg-overlay-play>
     <vg-buffering></vg-buffering>
 
     <vg-controls>
-      <app-controls [type]="'audio'"></app-controls>
+      <app-controls [type]="'audio'" [trackInfo]="trackInfo"></app-controls>
     </vg-controls>
 
     <audio [vgMedia]="media" #media id="singleAudio" preload="auto" crossorigin>
-      <source src="./assets/test.mp3" type="audio/mp3">
+      <source [src]="sanitizeUrl(trackInfo['path'])" type="audio/mp3">
     </audio>
   </vg-player>
 

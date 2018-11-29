@@ -19,10 +19,7 @@ export class TopBarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.stateService.state.subscribe((data) => {
-      console.log('state changed');
-      this.showList = this.stateService.isListMode();
-    });
+
 
   }
 
@@ -45,5 +42,6 @@ export class TopBarComponent implements OnInit {
       return 'top-menu__item';
     }
   }
+
 
 }

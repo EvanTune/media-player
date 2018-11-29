@@ -1,0 +1,26 @@
+<div class="artist">
+
+  <div class="artist__container">
+    <div class="artist__img"
+         [ngStyle]="{'background': 'url(assets/img/artists/' + artist[0]['artist-dashed'] + '.jpg) center center / cover'}"></div>
+      <div class="artist__info">
+        <div class="artist__name">{{ artist[0]['artist'] }}</div>
+      </div>
+    </div>
+
+    <div class="artist__albums">
+
+      <h2 class="artist__heading">Albums</h2>
+
+      <ng-container *ngFor="let album of albums">
+        <div class="artist__album">
+          <div class="artist__album-img"
+               [ngStyle]="{'background': 'url(assets/img/albums/' + album['album-dashed'] + '.png) center center / cover'}"></div>
+          <div>{{ album['album'] }}</div>
+        </div>
+      </ng-container>
+    </div>
+
+  <h2 class="artist__heading">Similar artists</h2>
+
+  </div>

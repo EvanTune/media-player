@@ -1,50 +1,23 @@
 <div class="list">
 
-  <table style="width:100%" *ngIf="type.includes('songs')">
-    <tr>
-      <th>Title</th>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Genre</th>
-      <th>Time</th>
-    </tr>
-    <tr *ngFor="let item of items">
+
+  <!--
+  <table style="width:100%" *ngIf="type === 'music'" border="0" cellspacing="0">
+    <tr *ngFor="let item of items; let i = index" (click)="songClicked(item)" [class]="item['id'] == playedId ? 'list__item list__item--active' : 'list__item'">
+      <td style="width: 30px">{{ i+1 }}</td>
       <td>{{ item['title'] }}</td>
-      <td>Nothing More</td>
-      <td>Eyes of the land</td>
-      <td>Rock</td>
+      <td>{{ item['artist'] }}</td>
+      <td>{{ item['album'] ? item['album'] : '-' }}</td>
+      <td>{{ item['genre'] ? item['genre'] : '-' }}</td>
       <td>{{ item['time'] }}</td>
     </tr>
-  </table>
+  </table> -->
 
-  <table style="width:100%" *ngIf="type.includes('videos')">
-    <tr>
-      <th>Title</th>
-      <th>Extension</th>
-      <th>Time</th>
-    </tr>
-    <tr *ngFor="let item of items" (click)="showVideoPlayer.emit()">
-      <td>{{ item['title'] }}</td>
-      <td>mp4</td>
-      <td>{{ item['time'] }}</td>
-    </tr>
-  </table>
-
-  <table style="width:100%" *ngIf="type.includes('images')">
-    <tr>
-      <th>Title</th>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Genre</th>
-      <th>Time</th>
-    </tr>
-    <tr *ngFor="let i of items">
-      <td>Through the eyes of a child</td>
-      <td>Nothing More</td>
-      <td>Eyes of the land</td>
-      <td>Rock</td>
-      <td>3:14</td>
-    </tr>
-  </table>
+  <app-et-table
+  [items]="items"
+  [columns]="columns"
+  [options]="options"
+  (itemClicked)="songClicked($event)">
+  </app-et-table>
 
 </div>

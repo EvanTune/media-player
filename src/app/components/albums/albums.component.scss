@@ -1,0 +1,42 @@
+.albums {
+
+  &__item {
+    height: 120px;
+    width: 120px;
+    float: left;
+    margin: 5px 20px 0 0;
+  }
+
+  &__item:hover {
+    cursor: pointer;
+  }
+
+  &__item:focus {
+    outline: none;
+  }
+
+  &__img {
+    height: 120px;
+    width: 120px;
+    border-radius: 2px;
+    border: 1px solid black;
+  }
+
+  &__album,
+  &__artist {
+    text-align: center;
+  }
+
+  &__album {
+    color: white;
+    margin: 5px 0 3px 0;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  &__artist {
+    color: #9b9b9b;
+    font-size: 12px;
+  }
+
+}

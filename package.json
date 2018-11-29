@@ -37,9 +37,15 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
+    "@angular/cdk": "^7.0.3",
     "@fortawesome/fontawesome-free": "^5.5.0",
+    "@swimlane/ngx-datatable": "^14.0.0",
+    "electron-store": "^2.0.0",
     "ionicons": "^4.4.6",
     "jsmediatags": "^3.8.1",
+    "ngx-scrollbar": "^3.1.2",
+    "png-to-jpeg": "^1.0.1",
+    "simplebar": "^3.1.0-beta.5",
     "videogular2": "^6.3.0"
   },
   "devDependencies": {

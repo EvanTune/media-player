@@ -1,0 +1,16 @@
+
+<app-progress [showProgress]="showProgress"></app-progress>
+
+<div class="music-folders">
+
+  <button class="music-folders__add-folders" (click)="addFolders()"><i class="music-folders__add-folders-icon fas fa-plus"></i> Add folders</button>
+
+  <button class="music-folders__scan-folders" (click)="scanAudioFiles()"><i class="music-folders__scan-folders-icon fas fa-search"></i> Scan folders for music</button>
+
+  <ul class="music-folders__list">
+    <li class="music-folders__item" *ngFor="let folder of musicFolders; let i = index" (click)="removeFolder(i)">
+      <i class="music-folders__icon fas fa-folder"></i> {{ folder }}
+    </li>
+  </ul>
+
+</div>

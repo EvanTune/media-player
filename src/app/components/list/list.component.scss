@@ -2,7 +2,8 @@
 
 .list {
 
-  tr th {
+
+  &__item th {
     color: #9b9b9b;
     font-weight: 500;
     text-align: left;
@@ -10,21 +11,42 @@
     padding: 6px 6px 12px 6px;
   }
 
-  tr td {
-    color: #f5f5f5;
-    font-weight: 400;
-    font-size: 12px;
-    padding: 6px;
+  &__item {
+    background-color: $darker;
   }
 
-  table tr:nth-child(1):hover  {
+  &__item:nth-child(2n) {
+    background-color: $dark;
+  }
+
+  &__item td {
+    color: #ebebeb;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px 15px;
+    transition: 0.1s all;
+  }
+
+  table &__item:nth-child(1):hover  {
     background-color: transparent;
     cursor: pointer;
   }
 
-  table tr:hover td  {
-    color: white;
-    background-color: rgba(255, 105, 0, 0.41);
+  table &__item:hover td  {
+    color: rgba(255,130,0, 1) !important;
+    cursor: pointer;
   }
 
+  &__item--active {
+    color: rgba(255,130,0, 0.6) !important;
+
+    td {
+      color: rgba(255,130,0, 1)
+    }
+  }
+
+}
+
+.ngx-datatable {
+  color: white;
 }

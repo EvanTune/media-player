@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,26 +11,35 @@ export class SidebarComponent implements OnInit {
 
   @Input() type;
   @Output() sidebarChanged = new EventEmitter<boolean>();
+  musicActive = true;
+  videosActive = false;
+  settingsActive = false;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private location: Location
+  ) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        this.setActiveClass();
+        console.log(route.url);
+      }
+    });
+  }
 
   ngOnInit() {
     console.log(this.router.url);
   }
 
-  setActiveClass(name) {
-    if (this.type === name) {
-      return 'sidebar__item sidebar__item--active';
-    } else {
-      return 'sidebar__item';
-    }
+  setActiveClass() {
+    this.musicActive = this.router.url.startsWith('/music');
+    this.videosActive = this.router.url.startsWith('/videos');
+    this.settingsActive = this.router.url.startsWith('/settings');
   }
 
-  setType(type) {
-    this.sidebarChanged.emit(type);
+  goBack() {
+    this.location.back();
   }
 
 
