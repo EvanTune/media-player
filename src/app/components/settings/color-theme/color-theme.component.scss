@@ -1,3 +1,5 @@
+@import "../../../sass/variables";
+
 .color-theme {
 
   display: flex;
@@ -43,7 +45,7 @@
   &__item:hover {
 
     .color-theme__window {
-      border: 2px solid orange;
+      border: 2px solid $primary;
 
     }
 
@@ -58,7 +60,7 @@
 
   &__item--active {
    .color-theme__window {
-     border: 2px solid orange;
+     border: 2px solid $primary;
    }
   }
 

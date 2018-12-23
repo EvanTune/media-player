@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MusicComponent} from './components/music/music.component';
-import {VideoComponent} from './components/video/video.component';
-import {ImagesComponent} from './components/images/images.component';
 import {SongsComponent} from './components/songs/songs.component';
 import {AlbumsComponent} from './components/albums/albums.component';
 import {ArtistsComponent} from './components/artists/artists.component';
@@ -13,6 +11,8 @@ import {ColorThemeComponent} from './components/settings/color-theme/color-theme
 import {VideoFoldersComponent} from './components/settings/video-folders/video-folders.component';
 import {MusicFoldersComponent} from './components/settings/music-folders/music-folders.component';
 import {GeneralComponent} from './components/settings/general/general.component';
+import {PlaylistComponent} from './components/playlist/playlist.component';
+import {FavouritesComponent} from './components/favourites/favourites.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'music', pathMatch: 'full' },
@@ -21,11 +21,11 @@ const routes: Routes = [
       {path: 'songs', component: SongsComponent},
       {path: 'albums', component: AlbumsComponent},
       {path: 'artists', component: ArtistsComponent},
-      {path: 'artist/:artistName/album/:albumName', component: AlbumComponent},
+      {path: 'album/:albumName/artist/:artistName', component: AlbumComponent},
       {path: 'artist/:artistName', component: ArtistComponent}
     ]},
-  {path: 'videos', component: VideoComponent},
-  {path: 'images', component: ImagesComponent},
+  {path: 'favourites', component: FavouritesComponent},
+  {path: 'playlist/:playlistId', component: PlaylistComponent},
   {path: 'settings', component: SettingsComponent, children: [
       {path: '', redirectTo: 'general', pathMatch: 'full'},
       {path: 'general', component: GeneralComponent},

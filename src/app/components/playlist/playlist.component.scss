@@ -1,0 +1,27 @@
+.playlist {
+
+  &__img {
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  &__content {
+    margin-left: 30px;
+  }
+
+  &__desc {
+    color: white;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 26px;
+    font-weight: 400;
+    color: #c3c3c3;
+  }
+
+}

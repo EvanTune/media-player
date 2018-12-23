@@ -32,13 +32,8 @@ import {ControlsComponent} from './components/controls/controls.component';
 import {VolumeComponent} from './components/volume/volume.component';
 import {TimelineComponent} from './components/timeline/timeline.component';
 import {TrackInfoComponent} from './components/track-info/track-info.component';
-import {VideoPlayerComponent} from './components/video-player/video-player.component';
 import { SearchComponent } from './components/search/search.component';
-import { VideoComponent } from './components/video/video.component';
 import { MusicComponent } from './components/music/music.component';
-import { ImagesComponent } from './components/images/images.component';
-import { ListComponent } from './components/list/list.component';
-import { GridComponent } from './components/grid/grid.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ControlsBarComponent } from './components/controls-bar/controls-bar.component';
 import { SongsComponent } from './components/songs/songs.component';
@@ -57,6 +52,17 @@ import { MusicFoldersComponent } from './components/settings/music-folders/music
 import { VideoFoldersComponent } from './components/settings/video-folders/video-folders.component';
 import { ColorThemeComponent } from './components/settings/color-theme/color-theme.component';
 import { ProgressComponent } from './components/progress/progress.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { PlaylistModalComponent } from './components/playlist-modal/playlist-modal.component';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -76,13 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     VolumeComponent,
     TimelineComponent,
     TrackInfoComponent,
-    VideoPlayerComponent,
     SearchComponent,
-    VideoComponent,
     MusicComponent,
-    ImagesComponent,
-    ListComponent,
-    GridComponent,
     MenuComponent,
     ControlsBarComponent,
     SongsComponent,
@@ -100,7 +101,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MusicFoldersComponent,
     VideoFoldersComponent,
     ColorThemeComponent,
-    ProgressComponent
+    ProgressComponent,
+    FavouritesComponent,
+    DropdownComponent,
+    PlaylistModalComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +116,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     VgOverlayPlayModule,
     VgBufferingModule,
     NgScrollbarModule,
+    PerfectScrollbarModule,
     NgxDatatableModule,
     TranslateModule.forRoot({
       loader: {
@@ -121,7 +126,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService,     {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

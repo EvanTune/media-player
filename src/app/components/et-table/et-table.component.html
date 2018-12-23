@@ -1,25 +1,43 @@
 <div class="et-table">
-    <ng-scrollbar [autoHide]="true">
-    <table class="et-table__table" style="width:100%" border="0" cellspacing="0">
+  <app-dropdown
+    [items]="dropdownItems"
+    [showDropdown]="showDropdown"
+    [topOffset]="dropdownTopOffset"
+    [leftOffset]="dropdownLeftOffset"
+    (closeDropdown)="showDropdown=false;"
+    (menuClickedEvent)="addTrackToPlaylist($event)"
+  ></app-dropdown>
 
-      <thead>
+  <ng-scrollbar barClass="scrollbar__bar" thumbClass="scrollbar__thumb">
+    <table class="et-table__table" style="width:100%" border="0" cellspacing="0"><thead>
       <tr>
         <ng-container *ngFor="let column of columns; let i = index;">
+
           <th [class]="setThClasses(column)" *ngIf="column['hide'] < innerWidth" (mouseenter)="sortColumns[i]['mouseHover'] = true"
               (mouseleave)="sortColumns[i]['mouseHover'] = false" (click)="setSortType(column['name'], i, true)">
+
             {{ column['header'] }}
+
             <i [class]="manageSortClasses(column['name'], i)"></i>
+
           </th>
+
         </ng-container>
       </tr>
       </thead>
 
       <tbody>
-      <ng-container *ngFor="let item of filteredItems">
-        <tr [class]="setItemClasses(item)" (click)="itemClicked.emit(item)">
-          <ng-container *ngFor="let column of columns">
+
+
+      <ng-container *ngFor="let item of filteredItems; let i = index">
+        <tr [class]="setItemClasses(item)" (click)="trackClicked(item)">
+          <ng-container *ngFor="let column of columns; last as isLast">
             <td [class]="setTdClasses(column)" *ngIf="column['hide'] < innerWidth">
               {{ setColumnContent(item, column) }}
+              <span *ngIf="column['type'] === 'main'">
+              <i [class]="item['favourited'] ? 'fas fa-heart et-table__heart-icon et-table__heart-icon--active' : 'fas fa-heart et-table__heart-icon'" (click)="favourite($event, item)"></i>
+              </span>
+              <i *ngIf="isLast" class="fas fa-ellipsis-h et-table__list-icon" (click)="openDropdown($event, item)"></i>
             </td>
           </ng-container>
         </tr>

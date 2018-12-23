@@ -1,0 +1,29 @@
+@import "variables";
+
+.button {
+
+  background-color: #282828;
+  border-radius: 4px;
+  padding: 10px 40px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  border: none;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  font-size: 11px;
+
+}
+
+.button--primary {
+  background: linear-gradient(45deg, $secondary, $primary);
+  transition: 0.1s all;
+}
+
+.button--primary:hover {
+  transform: scale(1.05);
+}
+
+.button--secondary {
+
+}

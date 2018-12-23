@@ -1,0 +1,27 @@
+<div class="content music">
+  <div class="content__left">
+
+    <div class="content-bar">
+      <div class="header-main">Favourites</div>
+
+      <div class="search">
+        <i class="fas fa-search search__icon"></i>
+        <input class="search__input" type="text" placeholder="Search here...">
+      </div>
+
+    </div>
+
+    <div class="content-bottom">
+      <app-et-table
+        [items]="songs"
+        [columns]="columns"
+        [options]="options">
+      </app-et-table>
+    </div>
+
+  </div>
+  <div class="content__right">
+    <app-now-playing></app-now-playing>
+  </div>
+
+</div>

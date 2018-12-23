@@ -1,3 +1,23 @@
-<p>
-  playlist works!
-</p>
+<div class="playlist content">
+  <div class="content__left">
+
+
+    <div class="playlist__container">
+      <img class="playlist__img" [src]="'/assets/img/icons/' + playlist['icon'] + '.png'" alt="">
+      <div class="playlist__content">
+        <div class="header-main">{{ playlist['name']}}</div>
+        <p class="playlist__desc">{{ playlist['desc'] }}</p>
+        <button class="button button--primary">Play</button>
+      </div>
+    </div>
+
+    <div class="testyy">
+      <app-et-table #etTable
+                    [items]="playlist['tracks']"
+                    [columns]="columns"
+                    [options]="options"
+      ></app-et-table>
+    </div>
+
+  </div>
+</div>

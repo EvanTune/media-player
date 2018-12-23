@@ -18,14 +18,18 @@
     <app-track-info [trackInfo]="trackInfo"></app-track-info>
 
     <div class="controls__left">
-      <div class="controls__icon controls__icon--shuffle"></div>
-      <div class="controls__icon controls__icon--repeat"></div>
+      <div
+        [class]="shuffle ? 'controls__icon controls__icon--shuffle controls__icon--active' : 'controls__icon controls__icon--shuffle'"
+        (click)="setShuffle(!shuffle,true)"></div>
+      <div
+        [class]="repeat ? 'controls__icon controls__icon--repeat controls__icon--active' : 'controls__icon controls__icon--repeat'"
+        (click)="setRepeat(!repeat, true)"></div>
 
     </div>
     <div class="controls__center">
-      <div class="controls__icon controls__icon--prev"></div>
+      <div class="controls__icon controls__icon--prev" (click)="playPrev()"></div>
       <vg-play-pause></vg-play-pause>
-      <div class="controls__icon controls__icon--next"></div>
+      <div class="controls__icon controls__icon--next" (click)="playNext()"></div>
     </div>
     <div class="controls__right">
       <vg-mute></vg-mute>
@@ -38,9 +42,6 @@
     </div>
 
   </div>
-
-
-
 
 
   <!--
@@ -61,8 +62,6 @@
   <!--
   <vg-track-selector></vg-track-selector>
   -->
-
-
 
 
 </div>

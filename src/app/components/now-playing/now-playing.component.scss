@@ -1,92 +1,132 @@
 @import "../../sass/variables";
 
 .now-playing {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-  &__container {
-    height: 370px;
-    width: 250px;
+  &__top {
+    height: 295px;
+    padding: 12px 25px;
+  }
+
+  &__bottom {
     position: absolute;
+    height: 367px;
+    right: 0px;
+    padding-right: 25px;
     bottom: 0;
+    left: 0px;
+    padding-left: 25px;
+    z-index: 4;
+    background-color: $darker;
+    border-top: 1px solid #232323;
   }
 
-  &__img-container {
-    position: absolute;
-    height: 210px;
-    width: 210px;
-    bottom: 20px;
-    left: 20px;
-    top: 60px;
-    right: 20px;
-    border-radius: 2px;
-    text-align: center;
-    border: 1px solid black;
-  }
-
-  &__list {
-    position: relative;
-    height: 100%;
-    margin-left: 20px;
-  }
-
-  ng-scrollbar {
-    height: calc(100% - 75px);
-  }
-
-  &__header {
-    padding: 20px 0 15px 20px;
+  &__heading {
     color: #ebebeb;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.4px;
+    padding-top: 15px;
+    padding-bottom: 20px;
   }
 
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    list-style: none;
+  &__icon {
+    position: absolute;
+    top: 31px;
+    right: 28px;
+    font-size: 13px;
     color: #919191;
-    font-size: 12px;
-    padding: 5px 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &__item--active {
+
+    .now-playing__title {
+      color: $primary;
+    }
+
+  }
+
+  &__item:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &__img {
+    height: 32px;
+    width: 32px;
+    border: 1px solid $darkest;
+    border-radius: 2px;
+
+  }
+
+
+  &__container {
+    margin-left: 10px;
+  }
+
+  &__title {
+    color: #cdcdcd;
+    font-size: 11px;
+    margin-bottom: 1px;
+  }
+
+  &__artist {
+    color: #878787;
+    font-size: 11px;
+  }
+}
+
+.now-playing-info {
+
+  background-color: $dark;
+
+  &__img {
+    height: 210px;
+    width: 210px;
+    margin-bottom: 20px;
+    border: 1px solid $darkest;
+    box-shadow: 0 2px 8px 1px rgba(255, 249, 252, 0.05);
+    border: 1px solid $darkest;
+    border-radius: 3px;
   }
 
   &__title,
   &__album,
   &__artist {
-    right: 20px;
-    position: absolute;
-    font-size: 12px;
-
+    text-align: left;
+    margin-left: 3px;
   }
 
   &__title {
     color: $primary;
-    top: 290px;
-    left: 20px;
-    font-weight: 600;
     font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
   }
 
   &__album {
-    top: 312px;
-    left: 20px;
-    color: #919191;
-    font-weight: 500;
+    color: #969696;
     font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 7px;
+    letter-spacing: 0.4px;
   }
 
   &__artist {
-    top: 335px;
-    left: 20px;
-    color: #cdcdcd;
+    color: #f5f5f5;
+    font-size: 10px;
     font-weight: 100;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 10px;
+    letter-spacing: 1.2px;
   }
 
 }

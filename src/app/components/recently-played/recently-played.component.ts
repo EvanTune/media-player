@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MusicService} from '../../services/music.service';
+import {PlaybackService} from '../../services/playback.service';
 
 @Component({
   selector: 'app-recently-played',
@@ -12,19 +13,20 @@ export class RecentlyPlayedComponent implements OnInit {
   items = [];
 
   constructor(
-    private musicService: MusicService
+    private musicService: MusicService,
+    private playbackService: PlaybackService
   ) { }
 
   ngOnInit() {
 
-    this.items = this.musicService.getRecentlyPlayed();
+    this.items = this.playbackService.getRecentlyPlayed();
 
-    this.musicService.playingTrack.subscribe(() => {
-      this.playingTrack = this.musicService.getPlayingTrack();
+    this.playbackService.playingTrack.subscribe(() => {
+      this.playingTrack = this.playbackService.getPlayingTrack();
       if (!this.isEmpty(this.playingTrack)) {
-        this.musicService.setRecentlyPlayed(this.playingTrack);
+        this.playbackService.setRecentlyPlayed(this.playingTrack);
       }
-      this.items = this.musicService.getRecentlyPlayed();
+      this.items = this.playbackService.getRecentlyPlayed();
     });
 
   }
@@ -34,7 +36,7 @@ export class RecentlyPlayedComponent implements OnInit {
   }
 
   songClicked(item) {
-    this.musicService.setPlayingTrack(item);
+    this.playbackService.playNewTrack(item, false);
     this.playingTrack = item;
   }
 

@@ -1,26 +1,29 @@
 <div class="content music">
   <div class="content__left">
 
+    <div class="content-bar">
       <div class="header-main">Music</div>
 
+      <div class="tab-menu">
+        <div routerLink="/music/songs" [class]="setMenuClasses('/music/songs')">Songs</div>
+        <div routerLink="/music/albums" [class]="setMenuClasses('/music/album')">Albums</div>
+        <div routerLink="/music/artists" [class]="setMenuClasses('/music/artist')">Artists</div>
 
-      <button *ngIf="showMenu" [class]="setMenuClasses(['/music', '/music/songs'])"  routerLink="/music/songs">Songs</button>
-      <button *ngIf="showMenu" [class]="setMenuClasses(['/music/albums'])"  routerLink="/music/albums">Albums</button>
-      <button *ngIf="showMenu" [class]="setMenuClasses(['/music/artists'])"  routerLink="/music/artists">Artists</button>
+      </div>
 
-       <i *ngIf="!showMenu" class="music__back fas fa-arrow-left" (click)="goBack()"></i>
+     <div class="search">
+       <div class="search__icon fas fa-search"></div>
+       <input class="search__input" type="text" placeholder="Search music">
+     </div>
 
-    <router-outlet></router-outlet>
+    </div>
 
-    <!--
-    <ng-scrollbar [autoHide]="true">
+    <div class="content-bottom">
       <router-outlet></router-outlet>
-    </ng-scrollbar>-->
+    </div>
+
   </div>
-  <div class="content__right">
-    <app-recently-played></app-recently-played>
-    <app-now-playing></app-now-playing>
-  </div>
+
 
 </div>
 

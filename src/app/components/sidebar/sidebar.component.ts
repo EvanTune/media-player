@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {MusicService} from '../../services/music.service';
+import {PlaylistService} from '../../services/playlist.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,37 +13,42 @@ export class SidebarComponent implements OnInit {
 
   @Input() type;
   @Output() sidebarChanged = new EventEmitter<boolean>();
-  musicActive = true;
-  videosActive = false;
-  settingsActive = false;
+  playlists = [];
+  showPlaylistModal = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
-  ) {
-    router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.setActiveClass();
-        console.log(route.url);
-      }
-    });
-  }
+    private location: Location,
+    private musicService: MusicService,
+    private playlistService: PlaylistService
+  ) {}
 
   ngOnInit() {
-    console.log(this.router.url);
+    //this.playlistService.resetPlaylists();
+    this.playlists = this.playlistService.getPlaylists();
   }
 
-  setActiveClass() {
-    this.musicActive = this.router.url.startsWith('/music');
-    this.videosActive = this.router.url.startsWith('/videos');
-    this.settingsActive = this.router.url.startsWith('/settings');
+  setActiveClass(route) {
+
+    let classes = 'sidebar__item';
+
+    if (this.router.url.startsWith(route)) {
+      classes += ' sidebar__item--active';
+    }
+
+    return classes;
   }
 
   goBack() {
     this.location.back();
   }
 
+
+  updatePlaylists() {
+    this.playlists = this.playlistService.getPlaylists();
+    this.showPlaylistModal = false;
+  }
 
 
 }

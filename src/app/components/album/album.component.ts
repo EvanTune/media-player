@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MusicService} from '../../services/music.service';
 import {ActivatedRoute} from '@angular/router';
+import {PlaybackService} from '../../services/playback.service';
 
 @Component({
   selector: 'app-album',
@@ -9,12 +10,11 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class AlbumComponent implements OnInit {
 
-  playingTrack = {};
   album = [];
   options = {};
   columns = [
     {header: '#', name: 'trackPos', hide: '0', faded: false, width: 'small', type: 'track', numeric: true},
-    {header: 'Title', name: 'title', hide: '0', faded: false, numeric: false},
+    {header: 'Title', name: 'title', hide: '0', faded: false, numeric: false, type: 'main'},
     {header: 'Album', name: 'album', hide: '1400', faded: true, numeric: false},
     {header: 'Artist', name: 'artist', hide: '1400', faded: true, numeric: false},
     {header: 'Time', name: 'time', hide: '0', faded: true, numeric: false}
@@ -22,24 +22,14 @@ export class AlbumComponent implements OnInit {
 
   constructor(
     private musicService: MusicService,
+    private playbackService: PlaybackService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    let artistName = this.route.snapshot.params['artistName'];
-    let albumName = this.route.snapshot.params['albumName'];
+    const artistName = this.route.snapshot.params['artistName'];
+    const albumName = this.route.snapshot.params['albumName'];
     this.album = this.musicService.findAlbum(artistName, albumName);
-    this.playingTrack = this.musicService.getPlayingTrack();
-
-    this.musicService.playingTrack.subscribe(() => {
-
-      this.playingTrack = this.musicService.getPlayingTrack();
-
-    });
-  }
-
-  songClicked(item) {
-    this.musicService.setPlayingTrack(item);
   }
 
 }

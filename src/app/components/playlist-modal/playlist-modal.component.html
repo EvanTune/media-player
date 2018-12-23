@@ -1,0 +1,34 @@
+<div class="playlist-modal" *ngIf="showModal" (click)="closeModalWindow()">
+
+  <div class="playlist-modal__box" (click)="$event.stopImmediatePropagation()">
+
+    <h1 class="playlist-modal__heading">Create new playlist</h1>
+    <button class="playlist-modal__exit fas fa-times" (click)="closeModalWindow()"></button>
+
+    <div class="playlist-modal__group">
+      <label class="playlist-modal__label" for="">Name</label>
+      <div class="playlist-modal__error" *ngIf="status === 'error'">{{ errorMsg }}</div>
+      <input [(ngModel)]="name" [class]="setInputClasses()" type="text" (keyup)="checkInput()" placeholder="">
+    </div>
+
+    <div class="playlist-modal__group">
+      <label class="playlist-modal__label" for="">Description (optional)</label>
+      <textarea [(ngModel)]="desc" class="playlist-modal__textarea" name="" id="" cols="100" rows="4" placeholder=""></textarea>
+    </div>
+
+
+    <div class="playlist-modal__group">
+      <label class="playlist-modal__label" for="">Image</label>
+    <div class="playlist-modal__icons">
+      <img [class]="setImgClass('wolf')" src="/assets/img/icons/wolf.png" (click)="setActiveImg('wolf')">
+      <img [class]="setImgClass('bear')" src="/assets/img/icons/bear.png" (click)="setActiveImg('bear')">
+      <img [class]="setImgClass('cat')" src="/assets/img/icons/cat.png" (click)="setActiveImg('cat')">
+    </div>
+    </div>
+
+    
+    <button class="playlist-modal__btn button button--primary" (click)="newPlaylist()">Create</button>
+
+  </div>
+
+</div>

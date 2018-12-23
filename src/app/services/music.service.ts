@@ -10,78 +10,40 @@ export class MusicService {
 
   store = new ElectronStore();
 
-  allMusic = [];
-  recentlyPlayed = [];
   id = 0;
   api: VgAPI;
-
   fs = require('fs');
   jsmediatags = require('jsmediatags');
-
-  playingTrack = new BehaviorSubject({});
-  musicFolders = new BehaviorSubject<any>([]);
 
   constructor() {
   }
 
-  getRecentlyPlayed() {
-    return this.store.get('recentlyPlayed') || [];
-  }
 
-  setRecentlyPlayed(value) {
-
-    const recentlyPlayed = this.store.get('recentlyPlayed') || [];
-    this.store.set('recentlyPlayed', recentlyPlayed);
-
-    if (recentlyPlayed && recentlyPlayed.length) {
-
-      if (recentlyPlayed[0]['id'] === value['id']) {
-        return;
-      }
-
-      if (recentlyPlayed.length > 5) {
-        recentlyPlayed.pop();
-      }
-
-    }
-
-    recentlyPlayed.unshift(value);
-
-    this.store.set('recentlyPlayed', recentlyPlayed);
-    this.recentlyPlayed = recentlyPlayed;
-
-  }
-
-  getPlayingTrack() {
-    return this.playingTrack.value;
-  }
-
-  setPlayingTrack(value) {
-    this.playingTrack.next(value);
-    this.updateAudioPlayer();
-  }
-
-  updateAudioPlayer() {
-    (<VgMedia>this.api.getDefaultMedia()).loadMedia();
-    setTimeout(() => {
-      this.api.play();
-    }, 100);
-  }
-
+  // Music
   getMusic() {
     return this.store.get('music');
+  }
+
+  getMusicTrackById(id) {
+
+    const music = this.getMusic();
+
+    for (let i = 0; i < music.length; i++) {
+      if (music[i]['id'] === id) {
+        return music[i];
+      }
+    }
+    return null;
   }
 
   setMusic(music) {
     return this.store.set('music', music);
   }
 
+
+  // Albums
   getAlbums() {
     return this.unique(this.getMusic(), 'album');
-  }
-
-  getArtists() {
-    return this.unique(this.getMusic(), 'artist');
   }
 
   findAlbum(artist, album) {
@@ -93,10 +55,18 @@ export class MusicService {
     return this.unique(music, 'album');
   }
 
+
+  // Artists
+  getArtists() {
+    return this.unique(this.getMusic(), 'artist');
+  }
+
   findArtist(artist) {
     return this.getMusic().filter(obj => obj['artist'] === artist);
   }
 
+
+  // Music folders
   getMusicFolders() {
     return this.store.get('music-folders');
   }
@@ -110,7 +80,7 @@ export class MusicService {
 
     folderPaths.forEach((folderPath, index) => {
       if (folders.indexOf(folderPaths[index]) === -1) {
-       folders.push(folderPath);
+        folders.push(folderPath);
       }
     });
 
@@ -126,10 +96,24 @@ export class MusicService {
     }
   }
 
+
+  // Favourites
+  setFavourite(track, value) {
+
+    const music = this.getMusic();
+
+    for (let i = 0; i < music.length; i++) {
+      if (track['id'] === music[i]['id']) {
+        music[i]['favourited'] = value;
+        this.setMusic(music);
+        return true;
+      }
+    }
+    return false;
+  }
+
   unique(array, propertyName) {
     return array.filter((e, i) => array.findIndex(a => a[propertyName] === e[propertyName]) === i);
   }
-
-
 
 }

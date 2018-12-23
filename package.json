@@ -43,6 +43,7 @@
     "electron-store": "^2.0.0",
     "ionicons": "^4.4.6",
     "jsmediatags": "^3.8.1",
+    "ngx-perfect-scrollbar": "^7.1.0",
     "ngx-scrollbar": "^3.1.2",
     "png-to-jpeg": "^1.0.1",
     "simplebar": "^3.1.0-beta.5",

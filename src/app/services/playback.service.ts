@@ -1,0 +1,174 @@
+import {Injectable} from '@angular/core';
+import ElectronStore from 'electron-store';
+import {VgAPI, VgMedia} from 'videogular2/core';
+import {BehaviorSubject} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PlaybackService {
+
+  tracks = [];
+  queue = new BehaviorSubject(<any>[]);
+  playingTrack = new BehaviorSubject(<any>{});
+  shuffle = new BehaviorSubject(<boolean>false);
+  repeat = new BehaviorSubject(<boolean>false);
+
+  api: VgAPI;
+  fs = require('fs');
+  jsmediatags = require('jsmediatags');
+
+  store = new ElectronStore();
+
+  constructor() {
+  }
+
+  // Currently playing track
+  getPlayingTrack() {
+    return this.store.get('playingTrack');
+  }
+
+  setPlayingTrack(value) {
+    this.store.set('playingTrack', value);
+    this.playingTrack.next(value);
+  }
+
+  // Music Queue
+  getMusicQueue() {
+    return this.store.get('queue') || [];
+  }
+
+  setMusicQueue() {
+    let queue = [];
+
+    const shuffle = this.getShuffle();
+    const repeat = this.getRepeat();
+
+    if (shuffle) {
+      queue = this.tracks.slice(0);
+      this.shuffleArray(queue);
+    } else if (repeat) {
+
+      for (let i = 0; i < 1; i++) {
+        queue.push(this.playingTrack.value);
+      }
+
+    } else {
+      queue = this.tracks.slice(0);
+    }
+    this.store.set('queue', queue);
+    this.queue.next(queue);
+  }
+
+
+  // Repeat
+  getRepeat() {
+    return this.store.get('repeat') || false;
+  }
+
+  setRepeat(repeat) {
+    this.repeat.next(repeat);
+    this.store.set('repeat', repeat);
+  }
+
+
+  // Shuffle
+  getShuffle() {
+    return this.store.get('shuffle') || false;
+  }
+
+  setShuffle(shuffle) {
+    this.shuffle.next(shuffle);
+    this.store.set('shuffle', shuffle);
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
+  // Recently played
+  getRecentlyPlayed() {
+    return this.store.get('recentlyPlayed') || [];
+  }
+
+  setRecentlyPlayed(value) {
+
+    const recentlyPlayed = this.store.get('recentlyPlayed') || [];
+    this.store.set('recentlyPlayed', recentlyPlayed);
+
+    if (recentlyPlayed && recentlyPlayed.length) {
+
+      if (recentlyPlayed[0]['id'] === value['id']) {
+        return;
+      }
+
+      if (recentlyPlayed.length > 5) {
+        recentlyPlayed.pop();
+      }
+
+    }
+
+    recentlyPlayed.unshift(value);
+
+    this.store.set('recentlyPlayed', recentlyPlayed);
+
+  }
+
+
+  // Playback
+  playNext() {
+    let index = 0;
+    const queue = this.getMusicQueue();
+
+    for (let i = 0; i < queue.length; i++) {
+      if (queue[i]['id'] === this.playingTrack['value']['id']) {
+        if (i + 1 < queue.length) {
+          index = i + 1;
+        }
+      }
+    }
+
+    this.playNewTrack(queue[index], false);
+  }
+
+  playPrev() {
+
+    let index = 0;
+    const queue = this.getMusicQueue();
+
+    for (let i = 0; i < queue.length; i++) {
+      if (queue[i]['id'] === this.playingTrack['value']['id']) {
+        if (i === 0) {
+          return;
+        }
+
+        index = i - 1;
+      }
+    }
+
+    this.playNewTrack(queue[index], false);
+  }
+
+  playNewTrack(value, setQueue) {
+    if (setQueue)  {
+      this.setMusicQueue();
+    }
+    this.setPlayingTrack(value);
+    this.updateAudioPlayer();
+
+
+  }
+
+  updateAudioPlayer() {
+    (<VgMedia>this.api.getDefaultMedia()).loadMedia();
+    setTimeout(() => {
+      this.api.play();
+    }, 90);
+  }
+
+}

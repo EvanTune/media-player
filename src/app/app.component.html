@@ -3,10 +3,13 @@
   <app-top-bar></app-top-bar>
   <app-sidebar></app-sidebar>
 
-  <button routerLink="music">ff</button>
   <main class="main">
     <router-outlet></router-outlet>
   </main>
+
+  <div class="content__right">
+    <app-now-playing></app-now-playing>
+  </div>
 
   <app-audio-player></app-audio-player>
 

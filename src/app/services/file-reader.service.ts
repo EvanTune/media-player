@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {readdirSync, statSync, existsSync} from 'fs';
 import * as path from 'path';
 import {MusicService} from './music.service';
+import {PlaybackService} from './playback.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class FileReaderService {
   id = 0;
 
   constructor(
-    private musicService: MusicService
+    private musicService: MusicService,
+    private playbackService: PlaybackService
   ) {}
 
   // recursive synchronous "walk" through a folder structure, with the given base path
@@ -86,7 +88,6 @@ export class FileReaderService {
         const tags = tag.tags;
         const imageData = tags.picture;
         const image = '';
-        //console.log(tag);
 
         /*
         if (imageData) {
@@ -109,6 +110,7 @@ export class FileReaderService {
             'time': '3:53',
             'trackPos': tags['track'],
             'path': filePath,
+            'favourited': false,
             'id': this.id++
           });
         }
@@ -119,7 +121,7 @@ export class FileReaderService {
            callback();
            this.folders = [];
            this.fileList = [];
-           this.musicService.setPlayingTrack({});
+           this.playbackService.setPlayingTrack({});
          }
        }, 2000);
 

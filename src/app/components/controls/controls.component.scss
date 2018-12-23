@@ -45,7 +45,15 @@
   }
 
   &__icon {
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  &__icon:hover {
+    cursor: pointer;
+  }
+
+  &__icon--active:before {
+    color: $primary !important;
   }
 
   &__icon--small {

@@ -1,5 +1,11 @@
 .artists {
 
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+
   &__item {
     margin: 5px 20px 0 0;
     height: 120px;

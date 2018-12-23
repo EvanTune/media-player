@@ -1,7 +1,6 @@
 @import "../../sass/variables";
 
 .et-table {
-  color: #ebebeb;
   height: 100%;
   overflow: auto;
   display: block;
@@ -11,15 +10,17 @@
   }
 
   &__td {
-    padding: 8px 15px 8px 15px;
+    padding: 8px 15px 8px 0;
     font-size: 14px;
     min-width: 70px;
     font-weight: 400;
     letter-spacing: 0.2px;
+    position: relative;
+    color: #e1e1e1;
   }
 
   &__td--faded {
-    color: #b9b9b9;
+    color: #afafaf;
   }
 
   &__td--small {
@@ -28,52 +29,110 @@
 
   &__th {
     text-align: left;
-    padding: 10px 15px;
-    color: #737373;
+    padding: 5px 15px 10px 0;
+    color: #7d7d7d;
     font-size: 13px;
     font-weight: 700;
     background-color: $dark;
     position: sticky;
     top: 0;
+    z-index: 5;
     transition: 0.15s ease-in-out;
+    letter-spacing: 0.4px;
   }
 
   &__th:hover {
-    background-color: $darkest;
     cursor: pointer;
     color: #ebebeb;
   }
 
-  &__item {
-    background-color: $darker;
+  &__heart-icon {
+    position: absolute;
+    right: 40px;
+    top: 11px;
+    font-weight: 100;
+    display: none;
+    color: grey;
   }
+
+  &__heart-icon:hover {
+    color: white;
+    font-weight: 600;
+  }
+
+  &__heart-icon--active {
+    color: grey;
+    display: block;
+    font-weight: 600;
+  }
+
+  &__heart-icon--active:hover {
+    color: white;
+    font-weight: 100;
+  }
+
+  &__list-icon {
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    font-weight: 100;
+    font-size: 26px;
+    color: #ffffff;
+    width: 30px;
+    text-align: center;
+    display: none;
+  }
+
+  &__list-icon:hover {
+    cursor: pointer;
+    color: white;
+  }
+
+  &__item {
+    transition: 0.4s all;
+  }
+
 
   &__item--active {
     color: $primary !important;
+    border-radius: 3px;
 
     .et-table__td {
       color: $primary;
     }
-  }
-
-  &__item:nth-child(2n) {
-    background-color: $dark;
   }
 
   &__item:hover {
-    color: $primary;
+    color: white;
     cursor: pointer;
+
+    .et-table__td {
+      color: white;
+    }
+
+    .et-table__heart-icon,
+    .et-table__list-icon {
+      display: block;
+    }
+
+    .et-table__list-icon {
+      display: block;
+    }
+
+  }
+
+  &__item--active:hover {
+    color: $primary;
 
     .et-table__td {
       color: $primary;
     }
-
   }
 
   &__sort-icon {
     position: absolute;
-    right: 12px;
-    top: 11px;
+    right: 42px;
+    top: 6px;
     font-weight: 400;
     font-size: 18px;
     opacity: 0;

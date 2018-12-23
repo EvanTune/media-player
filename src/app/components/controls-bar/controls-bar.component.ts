@@ -9,7 +9,10 @@ export class ControlsBarComponent implements OnInit {
 
   constructor() { }
 
+
+
   ngOnInit() {
+
   }
 
 }

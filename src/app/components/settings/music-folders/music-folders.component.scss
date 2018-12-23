@@ -9,19 +9,24 @@
   }
 
   &__item {
-    color: #e1e1e1;
+    color: #ebebeb;
     list-style: none;
-    font-size: 14px;
+    font-size: 13px;
     padding: 7px 0;
     display: flex;
     align-items: center;
     transition: 0.1s all;
     letter-spacing: 0.2px;
     padding-left: 2px;
+    background-color: $dark;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 2px;
+    border: 2px solid $darkest;
   }
 
   &__item:hover {
-    color: #ff2831;
+    color: #da0007;
     cursor: pointer;
   }
 
@@ -35,15 +40,18 @@
 
   &__add-folders,
   &__scan-folders {
-    background-color: #2d2d2d;
-    padding: 11px 12px;
-    color: #d7d7d7;
+    background-color: #282828;
+    padding: 11px 14px;
+    color: #ffffff;
     font-size: 13px;
     border-radius: 3px;
     border: 1px solid black;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0;
+    //background: linear-gradient(45deg, $secondary, $secondary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
+
 
   &__add-folders:hover,
   &__scan-folders:hover {
@@ -55,7 +63,7 @@
   }
 
   &__scan-folders {
-    margin-left: 20px;
+    margin-left: 25px;
   }
 
   &__add-folders-icon,
@@ -69,3 +77,4 @@
   }
 
 }
+

@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .music {
 
   ng-scrollbar {
@@ -18,4 +20,35 @@
     cursor: pointer;
   }
 
+  &__folder {
+    display: block;
+    color: grey;
+    margin-right: 25px;
+  }
+
 }
+
+
+
+.breadcrumbs {
+
+  &__list {
+
+  }
+
+  &__item {
+    color: white;
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  &__icon {
+
+  }
+
+
+}
+

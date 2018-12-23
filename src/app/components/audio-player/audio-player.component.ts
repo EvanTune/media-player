@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {VgAPI, VgMedia} from 'videogular2/core';
 import {MusicService} from '../../services/music.service';
+import {PlaybackService} from '../../services/playback.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -16,21 +17,30 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private musicService: MusicService
+    private musicService: MusicService,
+    private playbackService: PlaybackService
   ) { }
 
   ngOnInit() {
-    this.musicService.playingTrack.subscribe(() => {
-      this.trackInfo = this.musicService.getPlayingTrack();
+    this.playbackService.playingTrack.subscribe((val) => {
+      this.trackInfo = val;
     });
+    this.trackInfo = this.playbackService.getPlayingTrack();
   }
+
 
   sanitizeUrl(html) {
     return this.sanitizer.bypassSecurityTrustUrl(html);
   }
 
   onPlayerReady(api: VgAPI) {
-    this.musicService.api = api;
+    this.playbackService.api = api;
+
+    this.playbackService.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
+      this.playbackService.playNext();
+    });
   }
+
+
 
 }

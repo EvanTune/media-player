@@ -4,16 +4,17 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700);
 @import url("../node_modules/@fortawesome/fontawesome-pro/css/all.min.css");
 @import "app/sass/variables";
+@import "app/sass/buttons";
 @import "app/sass/videogular";
 @import "app/sass/theme";
-
 
 html, body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   height: 100%;
-  background-color: $darker;
+  background-color: $dark;
+  //background: linear-gradient(130deg, rgba(0,0,0,0.75),rgba(0,0,0,0.9)), url("/assets/img/bg4.jpg") center center /cover;
 }
 
 .main {
@@ -22,7 +23,7 @@ html, body {
 
 .content {
   position: absolute;
-  top: 34px;
+  top: 32px;
   left: 200px;
   right: 0;
   bottom: 70px;
@@ -40,29 +41,51 @@ html, body {
   position: absolute;
   top: 25px;
   left: 25px;
-  right: 280px;
+  right: 285px;
   bottom: 25px;
 }
 
 .content__right {
   position: absolute;
-  top: 0;
+  top: 32px;
   right: 0;
-  width: 250px;
+  width: 260px;
+  bottom: 70px;
+  z-index: 1;
+  background-color: $darker;
+}
+
+.content-bottom {
+  position: absolute;
+  left: 0;
+  top: 58px;
   bottom: 0;
-  background-color: $dark;
+  right: 0;
+}
+
+.testyy {
+  position: absolute;
+  top: 175px;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .header-main {
-  font-size: 24px;
-  color: #d7d7d7;
-  font-weight: 400;
-  margin-bottom: 15px;
+  font-size: 25px;
+  color: #f5f5f5;
+  font-weight: 600;
+  margin-bottom: 0;
   letter-spacing: 1px;
   margin-top: 0;
 }
 
-
+.content-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -1px;
+}
 
 input[type='checkbox'] {display:none;}
 input[type='checkbox'] + label:before {
@@ -86,31 +109,94 @@ input[type='checkbox']:checked + label:before {
 
 
 .tab-menu {
+  margin-left: 40px;
+  margin-right: auto;
 
   &__item {
     color: #919191;
-    margin-right: 25px;
-    margin-top: 5px;
-    margin-bottom: 30px;
     display: inline-block;
-    background-color: transparent;
-    border: none;
-    transition: 0.1s all;
-    padding: 0;
-    font-size: 13px;
+    font-size: 11px;
+    margin-right: 20px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   &__item:hover {
-    color: white;
     cursor: pointer;
-  }
-
-  &__item:focus {
-    outline: none;
+    color: white;
   }
 
   &__item--active {
     color: white;
   }
 
+  &__item:focus {
+    outline: none;
+  }
 }
+
+.search {
+  position: relative;
+  color: #919191;
+  //border: 1px solid $darkest;
+  margin-right: 5px;
+
+
+  &__input {
+    height: 28px;
+    padding-left: 40px;
+    font-size: 12px;
+    border: none;
+    color: #878787;
+    width: 165px;
+    background-color: #232323;
+
+    border-radius: 5px;
+    //border: 1px solid #1d1d1d;
+  }
+
+  &__input::placeholder {
+    color: #919191;
+  }
+
+
+  &__icon {
+    font-size: 12px;
+    color: #afafaf;
+    //border: 1px solid #5f5f5f;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    border-radius: 50px;
+    box-shadow: 0 0 6px 1px rgba(255,255,255,0.08);
+  }
+
+  &__icon--folder {
+    right: 52px;
+  }
+
+}
+
+.scrollbar {
+
+  &__bar {
+    background-color: #0f0f0f !important;
+  }
+
+  &__thumb {
+    background-color: #232323 !important;
+
+    &:hover {
+      background-color: #555555 !important;
+    }
+
+    &:active {
+      background-color: #555555 !important;
+    }
+  }
+
+}
+

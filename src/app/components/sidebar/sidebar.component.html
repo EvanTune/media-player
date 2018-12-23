@@ -1,54 +1,42 @@
 <div class="sidebar">
 
-  <ng-container>
-    <!--
-        <i class="sidebar__back fas fa-chevron-left" (click)="goBack()"></i> -->
+  <div class="sidebar__top">
+    <i class="sidebar__menu fas fa-bars"></i>
+    <i class="sidebar__left far fa-chevron-left" (click)="goBack()"></i>
+    <i class="sidebar__right far fa-chevron-right"></i>
+  </div>
 
-    <div class="sidebar-search">
-      <input class="sidebar-search__input" type="text" placeholder="Search here ...">
-      <i class="sidebar-search__icon fas fa-search"></i>
-    </div>
-
+  <div class="sidebar__group">
+    <div class="sidebar__heading">Library</div>
     <ul class="sidebar__list">
-      <li>
-        <div [class]="musicActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="music"
-             (click)="setActiveClass()">
-          <i class="sidebar__icon fas fa-music"></i> Music
-        </div>
+      <li [class]="setActiveClass('/music')" routerLink="/music/songs"><i class="sidebar__icon fas fa-music"></i> Music
+      </li> <!--
+      <li class="sidebar__item"><i class="sidebar__icon fas fa-podcast"></i> Podcasts</li>
+      <li class="sidebar__item"><i class="sidebar__icon fas fa-headphones"></i> Audiobooks</li> -->
+      <li [class]="setActiveClass('/favourites')" routerLink="/favourites"><i class="sidebar__icon fas fa-heart"></i>
+        Favourites
       </li>
+      <li class="sidebar__item"><i class="sidebar__icon fas fa-clock"></i> Recently played</li>
+    </ul>
+  </div>
 
-      <li>
-        <div [class]="videosActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="videos">
-          <i class="sidebar__icon fas fa-video"></i> Videos
-        </div>
-      </li>
-      <li>
-        <div [class]="false ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="playlist">
-          <i class="sidebar__icon fas fa-list-ul"></i> Playlists
-        </div>
-      </li>
-      <li>
-        <div [class]="settingsActive ? 'sidebar__item sidebar__item--active' : 'sidebar__item'" routerLink="settings/general">
-          <i class="sidebar__icon fas fa-cog"></i> Settings
-        </div>
+  <div class="sidebar__group">
+    <div class="sidebar__heading">Playlists</div>
+    <ul class="sidebar__list">
+      <li *ngFor="let playlist of playlists; let i = index" class="sidebar__item" [routerLink]="'/playlist/' + playlist['id']" [class]="setActiveClass('/playlist/' + playlist['id'])">
+        <img class="sidebar__icon2" [src]="'/assets/img/icons/' + playlist['icon'] + '.png'" alt="">
+        <span>{{ playlist['name'] }}</span>
       </li>
     </ul>
+  </div>
 
-    <!--
+  <div class="playlist-new">
+    <button class="playlist-new__btn" (click)="showPlaylistModal = true"><i class="playlist-new__plus fas fa-plus"></i>
+      New playlist
+    </button>
 
-    <div class="sidebar-playlist">
-      <h3 class="sidebar-playlist__heading"><i class=" sidebar-playlist__list-icon fas fa-list-ul"></i> Playlists</h3>
-      <div class="sidebar-playlist__add fas fa-plus"></div>
-      <ul class="sidebar-playlist__list">
-        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> My songs</li>
-        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> Songs I like</li>
-        <li class="sidebar-playlist__item"><i class="sidebar-playlist__dot fas fa-dot-circle"></i> Favourites</li>
-      </ul>
-    </div>
+  </div>
 
--->
-
-  </ng-container>
-
+  <app-playlist-modal [showModal]="showPlaylistModal" (newPlaylistCreated)="updatePlaylists()" (closeModal)="showPlaylistModal = false;"></app-playlist-modal>
 
 </div>

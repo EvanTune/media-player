@@ -15,7 +15,6 @@ export class AlbumsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.musicService.getMusic());
     this.albums = this.musicService.getAlbums();
   }
 

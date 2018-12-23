@@ -123,9 +123,11 @@
     }
 
     &__item--active {
+      background-color: white !important;
       color: $primary !important;
 
       .et-table__td {
+        background-color: white !important;
         color: $primary !important;
       }
     }
@@ -242,7 +244,7 @@
   }
 
   vg-scrub-bar-current-time {
-    background-color: #c3c3c3;
+    background-color: #c8c8c8;
   }
 
   vg-scrub-bar-current-time .background::after {
@@ -250,7 +252,7 @@
   }
 
   vg-scrub-bar-current-time .background {
-    background-color: #373737 !important;
+    background-color: #5f5f5f !important;
     border: 1px solid #373737 !important;
   }
 
