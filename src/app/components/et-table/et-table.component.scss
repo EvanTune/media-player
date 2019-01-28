@@ -7,20 +7,27 @@
   width: 100%;
 
   &__table {
+    margin: 0;
+    padding: 0;
   }
 
   &__td {
-    padding: 8px 15px 8px 0;
+    padding: 7px 15px 7px 0;
     font-size: 14px;
     min-width: 70px;
     font-weight: 400;
-    letter-spacing: 0.2px;
+    letter-spacing: 0px;
     position: relative;
-    color: #e1e1e1;
+    color: #ececec;
+    overflow: hidden;
+
+  }
+  &__td:last-child {
+    width: 120px;
   }
 
   &__td--faded {
-    color: #afafaf;
+    color: #cdcdcd;
   }
 
   &__td--small {
@@ -29,30 +36,35 @@
 
   &__th {
     text-align: left;
-    padding: 5px 15px 10px 0;
-    color: #7d7d7d;
-    font-size: 13px;
+    padding: 0px 15px 12px 0;
+    color: #919191;
+    font-size: 11px;
     font-weight: 700;
     background-color: $dark;
     position: sticky;
     top: 0;
     z-index: 5;
     transition: 0.15s ease-in-out;
-    letter-spacing: 0.4px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
   }
 
   &__th:hover {
     cursor: pointer;
-    color: #ebebeb;
+    color: #ffffff;
   }
 
   &__heart-icon {
     position: absolute;
     right: 40px;
-    top: 11px;
+    top: 0px;
     font-weight: 100;
     display: none;
-    color: grey;
+    color: #ebebeb;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
   }
 
   &__heart-icon:hover {
@@ -61,7 +73,7 @@
   }
 
   &__heart-icon--active {
-    color: grey;
+    color: #ebebeb;
     display: block;
     font-weight: 600;
   }
@@ -73,12 +85,14 @@
 
   &__list-icon {
     position: absolute;
-    top: 7px;
+    top: 0;
     right: 30px;
     font-weight: 100;
     font-size: 26px;
-    color: #ffffff;
-    width: 30px;
+    color: #c2c2c2;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
     text-align: center;
     display: none;
   }
@@ -86,12 +100,12 @@
   &__list-icon:hover {
     cursor: pointer;
     color: white;
+    font-size: 28px;
   }
 
   &__item {
-    transition: 0.4s all;
+    transition: 0.1s all;
   }
-
 
   &__item--active {
     color: $primary !important;
@@ -103,11 +117,11 @@
   }
 
   &__item:hover {
-    color: white;
+    color: $primary;
     cursor: pointer;
 
     .et-table__td {
-      color: white;
+      color: $primary;
     }
 
     .et-table__heart-icon,
@@ -131,8 +145,8 @@
 
   &__sort-icon {
     position: absolute;
-    right: 42px;
-    top: 6px;
+    right: 40px;
+    top: 0;
     font-weight: 400;
     font-size: 18px;
     opacity: 0;
@@ -144,6 +158,11 @@
 
   &__sort-icon--active {
     color: white;
+  }
+
+  &__empty-text {
+    color: #919191;
+    font-size: 14px;
   }
 
 }

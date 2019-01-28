@@ -5,17 +5,11 @@
       <div class="header-main">Music</div>
 
       <div class="tab-menu">
-        <div routerLink="/music/songs" [class]="setMenuClasses('/music/songs')">Songs</div>
-        <div routerLink="/music/albums" [class]="setMenuClasses('/music/album')">Albums</div>
-        <div routerLink="/music/artists" [class]="setMenuClasses('/music/artist')">Artists</div>
+        <div (click)="musicService.goToPage('/music/songs', this.router, true)" [class]="setMenuClasses('/music/songs')">Songs</div>
+        <div (click)="musicService.goToPage('/music/albums', this.router, true)" [class]="setMenuClasses('/music/album')">Albums</div>
+        <div (click)="musicService.goToPage('/music/artists', this.router, true)" [class]="setMenuClasses('/music/artist')">Artists</div>
 
       </div>
-
-     <div class="search">
-       <div class="search__icon fas fa-search"></div>
-       <input class="search__input" type="text" placeholder="Search music">
-     </div>
-
     </div>
 
     <div class="content-bottom">

@@ -1,42 +1,65 @@
 <div class="sidebar">
 
   <div class="sidebar__top">
-    <i class="sidebar__menu fas fa-bars"></i>
-    <i class="sidebar__left far fa-chevron-left" (click)="goBack()"></i>
-    <i class="sidebar__right far fa-chevron-right"></i>
+    <i class="sidebar__setting fas fa-cog" (click)="showSettings=true"></i>
+    <i class="sidebar__search fas fa-search" (click)="showSettings=true"></i>
+    <i
+      [class]="musicService.history.value.length > 0 ? 'sidebar__back sidebar__back--active far fa-chevron-left' : 'sidebar__back far fa-chevron-left'"
+      (click)="musicService.goBack(router)"></i>
   </div>
+
+  <app-dropdown
+    [items]="dropdownItems"
+    [showDropdown]="showDropdown"
+    [topOffset]="dropdownTopOffset"
+    [leftOffset]="dropdownLeftOffset"
+    (closeDropdown)="showDropdown=false;"
+    (menuClickedEvent)="itemClicked($event)"
+  ></app-dropdown>
 
   <div class="sidebar__group">
     <div class="sidebar__heading">Library</div>
     <ul class="sidebar__list">
-      <li [class]="setActiveClass('/music')" routerLink="/music/songs"><i class="sidebar__icon fas fa-music"></i> Music
-      </li> <!--
-      <li class="sidebar__item"><i class="sidebar__icon fas fa-podcast"></i> Podcasts</li>
-      <li class="sidebar__item"><i class="sidebar__icon fas fa-headphones"></i> Audiobooks</li> -->
-      <li [class]="setActiveClass('/favourites')" routerLink="/favourites"><i class="sidebar__icon fas fa-heart"></i>
+      <li [class]="setActiveClass('/music')" (click)="musicService.goToPage('/music/songs', this.router, true)"><i
+        class="sidebar__icon fas fa-music"></i> Music
+      </li>
+      <!--<li [class]="setActiveClass('/audio-books')" routerLink="/audio-books/albums"><i class="sidebar__icon fas fa-headphones"></i> Audiobooks</li> -->
+      <li [class]="setActiveClass('/favourites')" (click)="musicService.goToPage('/favourites', this.router, true)"><i
+        class="sidebar__icon fas fa-heart"></i>
         Favourites
       </li>
-      <li class="sidebar__item"><i class="sidebar__icon fas fa-clock"></i> Recently played</li>
+      <!--
+      <li [class]="setActiveClass('/recent')" routerLink="/recent"><i class="sidebar__icon fas fa-clock"></i> Recently
+        played
+      </li> -->
     </ul>
   </div>
 
   <div class="sidebar__group">
     <div class="sidebar__heading">Playlists</div>
     <ul class="sidebar__list">
-      <li *ngFor="let playlist of playlists; let i = index" class="sidebar__item" [routerLink]="'/playlist/' + playlist['id']" [class]="setActiveClass('/playlist/' + playlist['id'])">
-        <img class="sidebar__icon2" [src]="'/assets/img/icons/' + playlist['icon'] + '.png'" alt="">
+      <li *ngFor="let playlist of playlists; let i = index" class="sidebar__item"
+          (click)="musicService.goToPage('/playlist/' + playlist['id'], this.router, true)"
+          [class]="setActiveClass('/playlist/' + playlist['id'])">
+        <img class="sidebar__icon2" [src]="'assets/img/icons/' + playlist['icon'] + '.png'" alt="">
         <span>{{ playlist['name'] }}</span>
       </li>
     </ul>
   </div>
 
   <div class="playlist-new">
-    <button class="playlist-new__btn" (click)="showPlaylistModal = true"><i class="playlist-new__plus fas fa-plus"></i>
+    <button class="playlist-new__btn" (click)="playlistService.showplaylistModal.next({show: true, mode: 'new'})"><i
+      class="playlist-new__plus fas fa-plus"></i>
       New playlist
     </button>
 
   </div>
 
-  <app-playlist-modal [showModal]="showPlaylistModal" (newPlaylistCreated)="updatePlaylists()" (closeModal)="showPlaylistModal = false;"></app-playlist-modal>
+  <app-settings [showSettings]="showSettings" (closeSettings)="showSettings = false;"></app-settings>
+
+
+  <app-playlist-modal></app-playlist-modal>
+
 
 </div>
+

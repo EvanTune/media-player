@@ -72,8 +72,8 @@ html, body {
 }
 
 .header-main {
-  font-size: 25px;
-  color: #f5f5f5;
+  font-size: 24px;
+  color: #ffffff;
   font-weight: 600;
   margin-bottom: 0;
   letter-spacing: 1px;
@@ -83,7 +83,6 @@ html, body {
 .content-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: -1px;
 }
 
@@ -92,33 +91,35 @@ input[type='checkbox'] + label:before {
   font-family: 'Font Awesome 5 Pro', sans-serif;
   display: inline-block;
   color: white;
+  font-size: 14px;
+  height: 10px;
+  padding: 0;
+  margin: 0;
 }
 /* unchecked */
 input[type='checkbox'] + label:before {
   content: "\f0c8";
   font-weight:600;
-  color: white;
+  color: #cdcdcd;
 }
 /* checked */
 input[type='checkbox']:checked + label:before {
   content: "\f14a";
   font-weight:600;
-  color: #ff5200;
+  color: $primary;
 }
 
 
 
 .tab-menu {
   margin-left: 40px;
-  margin-right: auto;
 
   &__item {
-    color: #919191;
+    color: #afafaf;
     display: inline-block;
     font-size: 11px;
     margin-right: 20px;
     font-weight: 500;
-    letter-spacing: 0.2px;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
@@ -141,7 +142,7 @@ input[type='checkbox']:checked + label:before {
   position: relative;
   color: #919191;
   //border: 1px solid $darkest;
-  margin-right: 5px;
+  margin-right: 0px;
 
 
   &__input {
@@ -151,7 +152,7 @@ input[type='checkbox']:checked + label:before {
     border: none;
     color: #878787;
     width: 165px;
-    background-color: #232323;
+    background-color: #1e1e1e;
 
     border-radius: 5px;
     //border: 1px solid #1d1d1d;
@@ -183,11 +184,12 @@ input[type='checkbox']:checked + label:before {
 .scrollbar {
 
   &__bar {
-    background-color: #0f0f0f !important;
+    background-color: #2a2a2a !important;
+    right: -20px;
   }
 
   &__thumb {
-    background-color: #232323 !important;
+    background-color: #3e3e3e !important;
 
     &:hover {
       background-color: #555555 !important;
@@ -198,5 +200,9 @@ input[type='checkbox']:checked + label:before {
     }
   }
 
+}
+
+.ng-scrollbar-vertical {
+  right: 0 !important;
 }
 

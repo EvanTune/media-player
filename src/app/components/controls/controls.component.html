@@ -11,34 +11,39 @@
 
   <div class="controls__bottom">
 
-    <div class="controls__current-time" *ngIf="trackInfo['path']">
-      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-    </div>
-
-    <app-track-info [trackInfo]="trackInfo"></app-track-info>
-
     <div class="controls__left">
-      <div
-        [class]="shuffle ? 'controls__icon controls__icon--shuffle controls__icon--active' : 'controls__icon controls__icon--shuffle'"
-        (click)="setShuffle(!shuffle,true)"></div>
-      <div
-        [class]="repeat ? 'controls__icon controls__icon--repeat controls__icon--active' : 'controls__icon controls__icon--repeat'"
-        (click)="setRepeat(!repeat, true)"></div>
+
+      <div class="controls__time">
+        <div class="controls__current-time">
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+        </div>
+
+        <div class="controls__slash">/</div>
+
+        <div class="controls__total-time">
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+        </div>
+      </div>
+
 
     </div>
+
     <div class="controls__center">
+      <div [class]="shuffle ? 'controls__icon controls__icon--shuffle controls__icon--active' : 'controls__icon controls__icon--shuffle'"
+           (click)="setShuffle(!shuffle,true)">
+      </div>
       <div class="controls__icon controls__icon--prev" (click)="playPrev()"></div>
-      <vg-play-pause></vg-play-pause>
+      <div class="controls__play"><vg-play-pause></vg-play-pause></div>
       <div class="controls__icon controls__icon--next" (click)="playNext()"></div>
+
+      <div [class]="repeat ? 'controls__icon controls__icon--repeat controls__icon--active' : 'controls__icon controls__icon--repeat'"
+           (click)="setRepeat(!repeat, true)">
+      </div>
     </div>
+
     <div class="controls__right">
       <vg-mute></vg-mute>
       <vg-volume></vg-volume>
-      <vg-fullscreen *ngIf="type === 'video'"></vg-fullscreen>
-    </div>
-
-    <div class="controls__total-time" *ngIf="trackInfo['path']">
-      <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
     </div>
 
   </div>

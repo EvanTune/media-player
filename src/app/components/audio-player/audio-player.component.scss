@@ -5,9 +5,9 @@
   bottom: 0;
   height: 76px;
   width: 100%;
-  background-color: transparent;
   z-index: 15;
   transition: 0.25s all linear;
+  background-color: $darker;
 
   &__top {
     display: flex;

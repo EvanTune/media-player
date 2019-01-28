@@ -14,19 +14,37 @@ export class SidebarComponent implements OnInit {
   @Input() type;
   @Output() sidebarChanged = new EventEmitter<boolean>();
   playlists = [];
-  showPlaylistModal = false;
+
+  dropdownTopOffset = 70;
+  dropdownLeftOffset = 25;
+  showDropdown = false;
+  dropdownItems = [
+    {'title': 'New playlist', 'clickable': true},
+    {'title': 'Settings', 'clickable': true}
+  ];
+
+  showSettings = false;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    public router: Router,
     private location: Location,
-    private musicService: MusicService,
-    private playlistService: PlaylistService
+    public musicService: MusicService,
+    public playlistService: PlaylistService
   ) {}
 
   ngOnInit() {
-    //this.playlistService.resetPlaylists();
     this.playlists = this.playlistService.getPlaylists();
+
+    this.playlistService.playlistsUpdated.subscribe(() => {
+      this.playlists = this.playlistService.getPlaylists();
+    });
+  }
+
+  itemClicked(e) {
+    console.log(e);
+    this.showSettings = true;
+    this.showDropdown = false;
   }
 
   setActiveClass(route) {
@@ -47,7 +65,7 @@ export class SidebarComponent implements OnInit {
 
   updatePlaylists() {
     this.playlists = this.playlistService.getPlaylists();
-    this.showPlaylistModal = false;
+    this.playlistService.showplaylistModal.next({show: false, mode: 'new'});
   }
 
 

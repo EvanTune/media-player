@@ -1,10 +1,8 @@
 .albums {
 
-
-
   &__item {
-    height: 140px;
-    width: 140px;
+    height: 175px;
+    width: 175px;
     float: left;
     margin: 0px 30px 0 0;
   }
@@ -18,29 +16,29 @@
   }
 
   &__img {
-    height: 140px;
-    width: 140px;
+    height: 170px;
+    width: 170px;
+    border: 1px solid #2d2d2d;
     border-radius: 2px;
-    border: 1px solid black;
   }
 
   &__album,
   &__artist {
-    text-align: center;
+    text-align: left;
+    padding-left: 2px;
   }
 
   &__album {
     color: white;
-    margin: 7px 0 3px 0;
-    font-weight: 500;
+    margin: 10px 0 2px 0;
+    font-weight: 600;
     font-size: 13px;
   }
 
   &__artist {
-    color: #878787;
+    color: #919191;
     font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0px;
+    font-size: 13px;
   }
 
 }

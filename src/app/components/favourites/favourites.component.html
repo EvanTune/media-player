@@ -3,19 +3,17 @@
 
     <div class="content-bar">
       <div class="header-main">Favourites</div>
-
-      <div class="search">
-        <i class="fas fa-search search__icon"></i>
-        <input class="search__input" type="text" placeholder="Search here...">
-      </div>
-
     </div>
 
     <div class="content-bottom">
+
+      <app-empty *ngIf="songs.length === 0" [text]="'No favourites found.'"></app-empty>
+
       <app-et-table
         [items]="songs"
         [columns]="columns"
-        [options]="options">
+        [options]="options"
+        [emptyText]="''">
       </app-et-table>
     </div>
 

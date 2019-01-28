@@ -1,16 +1,18 @@
 <div *ngIf="showDropdown" class="dropdown" (click)="closeDropdown.emit(true)">
 
-  <ul class="dropdown__list" [ngStyle]="{'left': leftOffset + 'px', 'top': topOffset + 'px' }" (click)="$event.stopImmediatePropagation()">
+  <ul class="dropdown__list" [ngStyle]="{'left': leftOffset + 'px', 'top': topOffset + 'px' }"
+      (click)="$event.stopImmediatePropagation()">
     <li class="dropdown__item" *ngFor="let item of items" (click)="menuClicked($event, item)">
       {{ item['title'] }}
       <i class="dropdown__arrow fas fa-caret-right" *ngIf="item['children']"></i>
 
       <ul class="dropdown__list-inner" *ngIf="item['children']">
-        <perfect-scrollbar>
-        <li [class]="child['active'] ? 'dropdown__item-inner dropdown__item-inner--active' : 'dropdown__item-inner'" *ngFor="let child of item['children']" (click)="menuClicked($event, child)">
-          {{ child['title'] }}
-        </li>
-        </perfect-scrollbar>
+        <ng-scrollbar barClass="scrollbar__bar" thumbClass="scrollbar__thumb">
+          <li [class]="child['active'] ? 'dropdown__item-inner dropdown__item-inner--active' : 'dropdown__item-inner'"
+              *ngFor="let child of item['children']" (click)="menuClicked($event, child)">
+            {{ child['title'] }}
+          </li>
+        </ng-scrollbar>
       </ul>
 
     </li>

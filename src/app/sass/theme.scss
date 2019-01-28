@@ -2,31 +2,37 @@
 
 .theme-light {
 
-  background-color: #f0f0f0 !important;
+  background-color: $white !important;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
 
+  // Buttons
+  .button {
+    box-shadow: 0 2px 8px 1px rgba(0,0,0,0.12);
+  }
+
+  // Layout
   .top-bar {
-    background-color: white !important;
+    background-color: $whitest !important;
   }
 
   .sidebar {
-    background-color: #f5f5f5 !important;
+    background-color: $whiter !important;
   }
 
   .content__full {
-    background-color: #f0f0f0 !important;
+    background-color: $white !important;
   }
 
   .content__left {
-    background-color: #f0f0f0 !important;
+    background-color: $white !important;
   }
 
   .content__right {
-    background-color: #f5f5f5 !important;
+    background-color: $whiter !important;
   }
 
   .main {
@@ -73,17 +79,21 @@
 
   // Top bar
   .top-bar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04) !important;
     &__icon {
       color: #373737 !important;
     }
   }
 
   // sidebar {
-
   .sidebar {
 
+    &__heading {
+      color: black !important;
+    }
+
     &__item {
-      color: #696969 !important;
+      color: #555555 !important;
       font-weight: 500 !important;
     }
 
@@ -92,9 +102,64 @@
     }
 
     &__item--active {
-      background-color: white !important;
       color: black !important;
       font-weight: 600 !important;
+    }
+
+    &__setting,
+    &__search,
+    &__back {
+      color: #919191 !important;
+    }
+    &__setting:hover,
+    &__search:hover,
+    &__back:hover {
+      color: black !important;
+    }
+
+  }
+  .playlist-new {
+    &__btn {
+      color: black !important;
+    }
+  }
+
+  // Playlist
+  .playlist {
+
+    &__desc {
+      color: #4b4b4b !important;
+    }
+
+    &__btn {
+      background-color: white !important;
+      color: black !important;
+    }
+
+    &__btn--play {
+      color: white !important;
+    }
+
+    &__time {
+      color: #373737 !important;
+    }
+
+  }
+
+  // Albums
+  .albums {
+
+    &__album {
+      color: black !important;
+    }
+
+  }
+
+  // Artists
+  .artists {
+
+    &__name {
+      color: black !important;
     }
 
   }
@@ -110,24 +175,28 @@
       color: #5f5f5f !important;
     }
 
-    th {
-      background-color: #f5f5f5 !important;
+    &__th {
+      background-color: $white !important;
+    }
+
+    &__td {
+      color: black !important;
     }
 
     &__item {
-      background-color: #f0f0f0 !important;
+
     }
 
     &__item:nth-child(2n) {
-      background-color: #f5f5f5 !important;
+      //background-color: #f5f5f5 !important;
     }
 
     &__item--active {
-      background-color: white !important;
+      //background-color: white !important;
       color: $primary !important;
 
       .et-table__td {
-        background-color: white !important;
+        //background-color: white !important;
         color: $primary !important;
       }
     }
@@ -144,58 +213,90 @@
 
   }
 
-
-  // Recently Played
-  .recently-played {
-
-    &__header {
-      color: black !important;
-    }
-
-    &__item {
-
-    }
-
-    &__item--1 {
-      color: rgba(0,0,0,0.7) !important;
-    }
-
-    &__item--2 {
-      color: rgba(0,0,0,0.6) !important;
-    }
-
-    &__item--3 {
-      color: rgba(0,0,0,0.5) !important;
-    }
-
-    &__item--4 {
-      color: rgba(0,0,0,0.4) !important;
-    }
-
-    &__item--5 {
-      color: rgba(0,0,0,0.3) !important;
-    }
-
-    &__item--6 {
-      color: rgba(0,0,0,0.2) !important;
-    }
-
+  .audio-player {
+    background-color: white !important;
   }
 
   // Now Playing
   .now-playing {
-    &__header {
+
+    &__top {
+      //background-color: white !important;
+    }
+
+    &__bottom {
+      background-color: #f5f5f5 !important;
+    }
+
+    &__heading {
       color: black !important;
     }
 
-    &__album {
+    &__title {
       color: black !important;
+    }
+
+    &__artist {
+      color: #555555 !important;
+    }
+
+    &__item:hover {
+      background-color: white !important;
+    }
+
+    &__item--active {
+      background-color: white !important;
+    }
+
+  }
+
+  .now-playing-info {
+    &__title {
+      color: $primary;
+    }
+
+    &__album {
+      color: #969696;
     }
 
     &__artist {
       color: black !important;
     }
+  }
 
+  .now-playing-placeholder {
+
+    &__img {
+      background-color: #d7d7d7 !important;
+    }
+
+    &__title {
+      background-color: #d7d7d7 !important;
+    }
+
+    &__artist {
+      background-color: #d7d7d7 !important;
+    }
+
+  }
+
+  .now-playing-info-placeholder {
+
+    &__img {
+      background-color: #d7d7d7 !important;
+    }
+
+    &__title {
+      background-color: #d7d7d7 !important;
+    }
+
+    &__album {
+      background-color: #d7d7d7 !important;
+    }
+
+    &__artist {
+      background-color: #d7d7d7 !important;
+    }
   }
 
   // Color Theme
@@ -244,7 +345,7 @@
   }
 
   vg-scrub-bar-current-time {
-    background-color: #c8c8c8;
+    background-color: #9b9b9b;
   }
 
   vg-scrub-bar-current-time .background::after {
@@ -252,7 +353,7 @@
   }
 
   vg-scrub-bar-current-time .background {
-    background-color: #5f5f5f !important;
+    background-color: #4b4b4b !important;
     border: 1px solid #373737 !important;
   }
 
@@ -268,6 +369,10 @@
     background-color: #d5d5d5 !important;
   }
 
+  .vg-icon-pause::before {
+    color: black !important;
+  }
+
   .album {
 
     &__title {
@@ -276,15 +381,62 @@
 
   }
 
+  // Scrollbar
+  .scrollbar {
+
+    &__bar {
+      background-color: white !important;
+    }
+
+    &__thumb {
+      background-color: #dcdcdc !important;
+
+      &:hover {
+        background-color: #d2d2d2 !important;
+      }
+
+      &:active {
+        background-color: #d2d2d2 !important;
+      }
+    }
+
+  }
+
   // Settings
+  .settings {
+    background-color: rgba(255,255,255,0.8) !important;
+    &__box {
+      background-color: $whitest !important;
+      box-shadow: 0 2px 20px 1px rgba(0,0,0,0.15) !important;
+    }
+
+    &__close {
+      color: #4b4b4b !important;
+    }
+  }
+
+  .settings-menu {
+
+    &__item {
+      color: #878787 !important;
+    }
+
+    &__item:hover {
+      color: black !important;
+    }
+
+    &__item--active {
+      color: black !important;
+    }
+
+  }
 
   .music-folders {
 
     &__add-folders,
     &__scan-folders {
       background-color: #d7d7d7 !important;
-      color: #373737 !important;
-      border: 1px solid #cdcdcd !important;
+      color: white !important;
     }
 
     &__add-folders:hover,
@@ -294,24 +446,55 @@
 
     &__item {
       color: black !important;
+      background-color: $whiter !important;
+      width: calc(100% - 50px);
+      border: none !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
     }
 
     &__item:hover {
-      color: red !important;
+      color: $primary !important;
     }
 
   }
 
+  // Empty
+  .empty {
+
+    &__box {
+      background-color: white !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+
+    &__icon {
+      color: #131313 !important;
+    }
+
+    &__text {
+      color: black !important;
+    }
+
+  }
+
+  // Progress
   .progress {
     background-color: rgba(255,255,255,0.85) !important;
 
     &__window {
-      background-color: #e1e1e1 !important;
-      box-shadow: 0 0 12px 1px rgba(0,0,0,0.1);
+      background-color: #ffffff !important;
+      box-shadow: 0 2px 6px 1px rgba(0,0,0,0.2) !important;
     }
 
-    &__heading {
+    &__status {
       color: black !important;
+    }
+
+    &__percent {
+      color: black !important;
+    }
+
+    &__bar-bg {
+      background-color: #d2d2d2 !important;
     }
   }
 

@@ -33,12 +33,33 @@ export class PlaybackService {
     this.playingTrack.next(value);
   }
 
+  // Recently played
+  getRecentlyPlayed() {
+    return this.store.get('recentlyPlayed') || [];
+  }
+
+  setRecentlyPlayed(track) {
+    const recent = this.getRecentlyPlayed();
+    track['played'] = new Date();
+    recent.unshift(track);
+    this.store.set('recentlyPlayed', recent);
+  }
+
+  clearRecentlyPlayed() {
+    this.store.set('recentlyPlayed', []);
+  }
+
   // Music Queue
   getMusicQueue() {
     return this.store.get('queue') || [];
   }
 
-  setMusicQueue() {
+  setMusicQueue(queue) {
+    this.store.set('queue', queue);
+    this.queue.next(queue);
+  }
+
+  updateMusicQueue() {
     let queue = [];
 
     const shuffle = this.getShuffle();
@@ -48,16 +69,15 @@ export class PlaybackService {
       queue = this.tracks.slice(0);
       this.shuffleArray(queue);
     } else if (repeat) {
-
-      for (let i = 0; i < 1; i++) {
-        queue.push(this.playingTrack.value);
-      }
-
+      queue.push(this.playingTrack.value);
     } else {
       queue = this.tracks.slice(0);
     }
-    this.store.set('queue', queue);
-    this.queue.next(queue);
+    this.setMusicQueue(queue);
+  }
+
+  clearMusicQueue() {
+    this.setMusicQueue([]);
   }
 
 
@@ -90,35 +110,6 @@ export class PlaybackService {
       array[j] = temp;
     }
   }
-
-  // Recently played
-  getRecentlyPlayed() {
-    return this.store.get('recentlyPlayed') || [];
-  }
-
-  setRecentlyPlayed(value) {
-
-    const recentlyPlayed = this.store.get('recentlyPlayed') || [];
-    this.store.set('recentlyPlayed', recentlyPlayed);
-
-    if (recentlyPlayed && recentlyPlayed.length) {
-
-      if (recentlyPlayed[0]['id'] === value['id']) {
-        return;
-      }
-
-      if (recentlyPlayed.length > 5) {
-        recentlyPlayed.pop();
-      }
-
-    }
-
-    recentlyPlayed.unshift(value);
-
-    this.store.set('recentlyPlayed', recentlyPlayed);
-
-  }
-
 
   // Playback
   playNext() {
@@ -155,20 +146,36 @@ export class PlaybackService {
   }
 
   playNewTrack(value, setQueue) {
-    if (setQueue)  {
-      this.setMusicQueue();
+    if (setQueue) {
+      this.updateMusicQueue();
     }
     this.setPlayingTrack(value);
     this.updateAudioPlayer();
+  }
 
-
+  playFirst() {
+    this.updateMusicQueue();
+    this.setPlayingTrack(this.tracks[0]);
+    this.updateAudioPlayer();
   }
 
   updateAudioPlayer() {
     (<VgMedia>this.api.getDefaultMedia()).loadMedia();
     setTimeout(() => {
       this.api.play();
-    }, 90);
+    }, 50);
+  }
+
+  getTotalTimeOfTracks(tracks) {
+    let second = 0;
+
+    for (let i = 0; i < tracks.length; i++) {
+      const arr = tracks[i]['time'].split(':');
+      second += parseInt(arr[0], 10) * 60;
+      second += parseInt(arr[1], 10);
+    }
+
+    return Math.floor(second / 60) + 'm ' + second % 60 + 's ';
   }
 
 }

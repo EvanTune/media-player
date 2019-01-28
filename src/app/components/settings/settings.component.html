@@ -1,15 +1,24 @@
 
-<div class="content">
-  <div class="content__full">
-    <h1 class="header-main">Settings</h1>
-    <div class="tab-menu">
-      <button [class]="activeRoute === '/settings/general' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/general">General</button>
-      <button [class]="activeRoute === '/settings/music-folders' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/music-folders">Music folders</button>
-      <button [class]="activeRoute === '/settings/video-folders' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/video-folders">Video folders</button>
-      <button [class]="activeRoute === '/settings/color-theme' ? 'tab-menu__item tab-menu__item--active' : 'tab-menu__item'" routerLink="/settings/color-theme">Color theme</button>
+<div *ngIf="showSettings" class="settings" (click)="closeSettingsWindow()">
+
+  <div class="settings__box" (click)="$event.stopPropagation()">
+    <div class="settings__close fas fa-times" (click)="closeSettings.emit()"></div>
+    <div class="settings__top">
+      <h1 class="header-main">Settings</h1>
+      <div class="settings-menu">
+        <!--<button [class]="activeComponent === 'general' ? 'settings-menu__item settings-menu__item--active' : 'settings-menu__item'" (click)="activeComponent = 'general'">General</button>-->
+        <button [class]="activeComponent === 'music-folders' ? 'settings-menu__item settings-menu__item--active' : 'settings-menu__item'" (click)="activeComponent = 'music-folders'">Folders</button>
+        <button [class]="activeComponent === 'color-theme' ? 'settings-menu__item settings-menu__item--active' : 'settings-menu__item'" (click)="activeComponent = 'color-theme'">Themes</button>
+      </div>
     </div>
 
-    <router-outlet></router-outlet>
+    <!--<app-general *ngIf="activeComponent === 'general'"></app-general> -->
+    <app-music-folders *ngIf="activeComponent === 'music-folders'" [folderType]="musicService.musicFoldersId"></app-music-folders>
+    <app-music-folders *ngIf="activeComponent === 'audio-book-folders'" [folderType]="musicService.audioBooksFoldersId"></app-music-folders>
+    <app-color-theme *ngIf="activeComponent === 'color-theme'"></app-color-theme>
+
 
   </div>
+
 </div>
+

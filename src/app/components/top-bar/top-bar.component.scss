@@ -3,9 +3,10 @@
 .top-bar {
   height: 28px;
   background-color: $darkest;
-  z-index: 5;
+  z-index: 10;
   position: relative;
   padding: 3px 3px 3px 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
 
   &__container {
     display: flex;
@@ -31,7 +32,7 @@
   }
 
   &__icon {
-    color: #b9b9b9;
+    color: #d7d7d7;
     font-weight: 100;
     height: 34px;
     width: 44px;
@@ -57,13 +58,13 @@
   }
 
   &__icon--minimize {
-    line-height: 35px;
+    line-height: 36px;
     right: 88px;
   }
 
   &__icon:hover {
     color: white;
-    background-color: #373737;
+    background-color: #2d2d2d;
   }
 
   &__icon--close:hover {
@@ -96,7 +97,7 @@
 
   &__text--bold {
     font-weight: 600;
-    color: #d7d7d7;
+    color: #c3c3c3;
     display: inline-block;
     margin-right: 2px;
     letter-spacing: 0.5px;

@@ -2,36 +2,35 @@
 
 .now-playing {
   position: absolute;
-  top: 4px;
+  top: 5px;
   right: 0;
   bottom: 0;
   left: 0;
 
   &__top {
-    height: 295px;
-    padding: 12px 25px;
+    height: calc(100% - 450px);
+    padding: 12px 20px;
   }
 
   &__bottom {
     position: absolute;
-    height: 367px;
+    height: 370px;
     right: 0px;
-    padding-right: 25px;
+    padding-right: 20px;
     bottom: 0;
     left: 0px;
-    padding-left: 25px;
+    padding-left: 20px;
     z-index: 4;
     background-color: $darker;
-    border-top: 1px solid #232323;
   }
 
   &__heading {
-    color: #ebebeb;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.4px;
     padding-top: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 19px;
   }
 
   &__icon {
@@ -46,14 +45,30 @@
     display: flex;
     align-items: center;
     margin-bottom: 8px;
+    transition: 0.15s all;
+  }
+
+  &__item:hover {
+    cursor: pointer;
+    background-color: #1e1e1e;
+    .now-playing__title {
+      color: $primary;
+    }
+    .now-playing__artist {
+      color: #c3c3c3;
+    }
   }
 
   &__item--active {
 
+    background-color: #1e1e1e;
+
     .now-playing__title {
       color: $primary;
     }
-
+    .now-playing__artist {
+      //color: #d7d7d7;
+    }
   }
 
   &__item:last-of-type {
@@ -61,16 +76,14 @@
   }
 
   &__img {
-    height: 32px;
-    width: 32px;
+    height: 36px;
+    width: 36px;
     border: 1px solid $darkest;
     border-radius: 2px;
-
   }
 
-
   &__container {
-    margin-left: 10px;
+    margin-left: 8px;
   }
 
   &__title {
@@ -83,18 +96,21 @@
     color: #878787;
     font-size: 11px;
   }
+
+  &__empty-text {
+    font-size: 13px;
+    color: #919191;
+  }
 }
 
 .now-playing-info {
-
   background-color: $dark;
 
   &__img {
-    height: 210px;
-    width: 210px;
-    margin-bottom: 20px;
-    border: 1px solid $darkest;
-    box-shadow: 0 2px 8px 1px rgba(255, 249, 252, 0.05);
+    height: 218px;
+    width: 218px;
+    margin-bottom: 16px;
+    //box-shadow: 0 2px 4px 1px rgba(255, 249, 252, 0.05);
     border: 1px solid $darkest;
     border-radius: 3px;
   }
@@ -127,6 +143,76 @@
     font-weight: 100;
     text-transform: uppercase;
     letter-spacing: 1.2px;
+  }
+
+}
+
+.now-playing-placeholder {
+
+  &__item {
+    margin-bottom: 10px;
+    height: 36px;
+    position: relative;
+  }
+
+  &__img {
+    height: 38px;
+    width: 38px;
+    background-color: #282828;
+  }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__title {
+    height: 10px;
+    margin-bottom: 8px;
+    width: 100px;
+    background-color: #282828;
+  }
+
+  &__artist {
+    height: 10px;
+    width: 50px;
+    background-color: #282828;
+  }
+
+}
+
+.now-playing-info-placeholder {
+
+  &__img {
+    height: 218px;
+    width: 218px;
+    background-color: #282828;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    width: 150px;
+    height: 12px;
+    background-color: #282828;
+  }
+
+  &__album {
+    width: 80px;
+    height: 12px;
+    margin: 10px 0;
+    background-color: #282828;
+  }
+
+  &__artist {
+    width: 120px;
+    height: 12px;
+    background-color: #282828;
   }
 
 }

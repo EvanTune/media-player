@@ -2,56 +2,61 @@
 
 .music-folders {
 
+  height: 100%;
+
   &__list {
     padding: 0;
     margin: 0;
     margin-top: 22px;
+    overflow: auto;
+    position: absolute;
+    top: 135px;
+    right: 40px;
+    bottom: 40px;
+    left: 40px;
   }
 
   &__item {
-    color: #ebebeb;
+    color: #ffffff;
     list-style: none;
     font-size: 13px;
-    padding: 7px 0;
     display: flex;
     align-items: center;
     transition: 0.1s all;
     letter-spacing: 0.2px;
-    padding-left: 2px;
-    background-color: $dark;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px 15px;
-    border-radius: 2px;
-    border: 2px solid $darkest;
+    background-color: #232323;
+    border-radius: 5px;
+    border: 1px solid $darkest;
   }
 
   &__item:hover {
-    color: #da0007;
+    color: $primary;
     cursor: pointer;
   }
 
   &__icon {
     margin-right: 15px;
+    background-color: red !important;
   }
 
-  &__remove-btn {
-    margin-left: 10px;
+  &__remove-folders {
+    margin-left: 20px;
+  }
+
+  &__empty {
+    color: #989898;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    letter-spacing: 0.2px;
   }
 
   &__add-folders,
   &__scan-folders {
-    background-color: #282828;
-    padding: 11px 14px;
-    color: #ffffff;
-    font-size: 13px;
-    border-radius: 3px;
-    border: 1px solid black;
-    font-weight: 500;
-    letter-spacing: 0;
-    //background: linear-gradient(45deg, $secondary, $secondary);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
   }
-
 
   &__add-folders:hover,
   &__scan-folders:hover {

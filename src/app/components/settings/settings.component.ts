@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
+import {MusicService} from '../../services/music.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,19 +9,21 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  activeRoute = '';
+  activeComponent = 'music-folders';
+  @Input() showSettings;
+  @Output() closeSettings = new EventEmitter();
 
   constructor(
-    private router: Router
-  ) {
-    router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.activeRoute = val.url;
-      }
-    });
-  }
+    private router: Router,
+    private musicService: MusicService
+  ) {}
 
   ngOnInit() {
+  }
+
+  closeSettingsWindow() {
+    console.log('ggg');
+    this.closeSettings.emit();
   }
 
 }

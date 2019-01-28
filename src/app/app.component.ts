@@ -4,8 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {StateService} from './services/state.service';
-import {st} from '@angular/core/src/render3';
 import {PlaybackService} from './services/playback.service';
+import {MusicService} from './services/music.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,9 @@ export class AppComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private state: StateService,
-    private playbackService: PlaybackService
+    private playbackService: PlaybackService,
+    private musicService: MusicService,
+    private location: Location
   ) {
 
     translate.setDefaultLang('en');
@@ -51,6 +54,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.themeClass = this.state.getTheme();
+    this.musicService.music.next(this.musicService.getMusic());
     this.playbackService.playingTrack.next(this.playbackService.getPlayingTrack());
   }
 }

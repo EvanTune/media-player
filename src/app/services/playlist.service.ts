@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import ElectronStore from 'electron-store';
 import {MusicService} from './music.service';
+import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,15 @@ import {MusicService} from './music.service';
 export class PlaylistService {
 
   store = new ElectronStore();
+  showplaylistModal = new BehaviorSubject({show: false, mode: 'new'});
+  editFieldsModal = new BehaviorSubject({name: '', desc: '', icon: 'wolf', id: '-1'});
+  playlistsUpdated = new BehaviorSubject(true);
+  playlistUpdated = new BehaviorSubject(true);
 
   constructor(
-    private musicService: MusicService
+    private musicService: MusicService,
+    private playlistService: PlaylistService,
+    private router: Router
   ) {
   }
 
@@ -20,14 +28,34 @@ export class PlaylistService {
     return this.store.get('playlists') || [];
   }
 
-  playlistExists(name) {
+  setPlaylists(playlists) {
+    this.store.set('playlists', playlists);
+    this.playlistsUpdated.next(true);
+  }
 
+  deletePlaylist(id) {
     const playlists = this.getPlaylists();
+
     for (let i = 0; i < playlists.length; i++) {
-      if (playlists[i]['name'].toLowerCase() === name.toLowerCase()) {
-        return true;
+      if (playlists[i]['id'] === id) {
+        playlists.splice(i,1);
       }
     }
+
+    this.router.navigate(['/music/songs']);
+    this.setPlaylists(playlists);
+  }
+
+  playlistExists(newName, oldName = null) {
+
+    const playlists = this.getPlaylists();
+
+    for (let i = 0; i < playlists.length; i++) {
+      if (playlists[i]['name'].toLowerCase() === newName.toLowerCase()) {
+        return oldName.toLowerCase() !== playlists[i]['name'].toLowerCase();
+      }
+    }
+
     return false;
 
   }
@@ -57,23 +85,41 @@ export class PlaylistService {
     return playlist;
   }
 
-  newPlaylist(name, desc, icon) {
+  newPlaylist(playlist) {
 
     const playlists = this.getPlaylists();
 
     for (let i = 0; i < playlists.length; i++) {
-      if (playlists[i]['name'].toLowerCase() === name.toLowerCase()) {
+      if (playlists[i]['name'].toLowerCase() === playlist['name'].toLowerCase()) {
         return false;
       }
     }
-    playlists.push({
-      name: name,
-      desc: desc,
-      icon: icon,
+    const newPlaylist = {
+      name: playlist['name'],
+      desc: playlist['desc'],
+      icon: playlist['icon'],
       id: this.getHighestId(playlists) + 1
-    });
-    this.store.set('playlists', playlists);
-    return true;
+    };
+    playlists.push(newPlaylist);
+
+    this.setPlaylists(playlists);
+    return newPlaylist;
+
+  }
+
+  editPlaylist(playlist) {
+
+    const playlists = this.getPlaylists();
+
+    console.log(playlist);
+
+    for (let i = 0; i < playlists.length; i++) {
+      if (playlists[i]['id'] === playlist['id']) {
+        playlists[i] = playlist;
+      }
+    }
+
+    this.setPlaylists(playlists);
 
   }
 

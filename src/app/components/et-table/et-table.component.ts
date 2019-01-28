@@ -1,20 +1,27 @@
-import {Component, EventEmitter, HostListener, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {PlaybackService} from '../../services/playback.service';
 import {MusicService} from '../../services/music.service';
 import {PlaylistService} from '../../services/playlist.service';
+import {Subject} from 'rxjs';
+import {TimeAgoPipe} from 'ngx-moment';
 
 @Component({
   selector: 'app-et-table',
   templateUrl: './et-table.component.html',
-  styleUrls: ['./et-table.component.scss']
+  styleUrls: ['./et-table.component.scss'],
+  providers: [
+    TimeAgoPipe
+  ],
 })
-export class EtTableComponent implements OnInit {
+export class EtTableComponent implements OnInit, OnChanges {
 
   @Input() items;
   @Input() columns;
   @Input() options;
   filteredItems = [];
   sortColumns = [];
+
+  @Input() emptyText;
 
   innerWidth: number;
   sortType = 'trackPos';
@@ -26,7 +33,7 @@ export class EtTableComponent implements OnInit {
   dropdownTopOffset = 0;
   dropdownLeftOffset = 0;
   dropdownItems = [];
-  dropdownPlaylistId = -1;
+  currentDropDownTrack = {};
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -36,7 +43,8 @@ export class EtTableComponent implements OnInit {
   constructor(
     private playbackService: PlaybackService,
     private musicService: MusicService,
-    private playlistService: PlaylistService
+    private playlistService: PlaylistService,
+    private timeAgoPipe: TimeAgoPipe
   ) {
   }
 
@@ -61,6 +69,10 @@ export class EtTableComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.updateOnParamChange();
+  }
+
   updateOnParamChange() {
     this.sortItems(this.sortType, this.sortAscending, false, true);
   }
@@ -68,12 +80,11 @@ export class EtTableComponent implements OnInit {
   setDropDownItems() {
 
     const array = [
-      {title: 'Play track', clickable: true},
-      {title: 'Add to favourites', clickable: true},
+      {title: 'Add to favourites', clickable: true, type: 'favourited'},
     ];
 
     const playlists = this.playlistService.getPlaylists();
-    const playlistsObj = {title: 'Add to playlist', clickable: false, children: []};
+    const playlistsObj = {title: 'Add to playlist', clickable: false, children: [], type: null};
 
     playlists.sort((a, b) => {
       return a['name'].localeCompare(b['name'], 'en', {numeric: false});
@@ -93,18 +104,39 @@ export class EtTableComponent implements OnInit {
 
   }
 
+  openDropdown(e, item) {
+    e.stopImmediatePropagation();
+
+    if (window.innerHeight - e.clientY < 250) {
+      this.dropdownLeftOffset = e.clientX;
+      this.dropdownTopOffset = e.clientY - 160;
+    } else {
+      this.dropdownLeftOffset = e.clientX;
+      this.dropdownTopOffset = e.clientY - 10;
+    }
+
+    this.showDropdown = true;
+    this.currentDropDownTrack = item;
+    this.editDropdownItems(item);
+  }
 
   editDropdownItems(track) {
 
-    for (let i = 0; i < this.dropdownItems[2]['children'].length; i++) {
+    if (track['favourited']) {
+      this.dropdownItems[0]['title'] = 'Remove from favourites';
+    } else {
+      this.dropdownItems[0]['title'] = 'Add to favourites';
+    }
 
-      this.dropdownItems[2]['children'][i]['active'] = false;
+    for (let i = 0; i < this.dropdownItems[1]['children'].length; i++) {
+
+      this.dropdownItems[1]['children'][i]['active'] = false;
 
       if (track['playlists']) {
         for (let j = 0; j < track['playlists'].length; j++) {
 
-          if (this.dropdownItems[2]['children'][i]['id'] === track['playlists'][j]) {
-            this.dropdownItems[2]['children'][i]['active'] = true;
+          if (this.dropdownItems[1]['children'][i]['id'] === track['playlists'][j]) {
+            this.dropdownItems[1]['children'][i]['active'] = true;
           }
 
         }
@@ -114,29 +146,13 @@ export class EtTableComponent implements OnInit {
 
   }
 
-  openDropdown(e, item) {
-    e.stopImmediatePropagation();
-
-
-    if (window.innerHeight - e.clientY < 250) {
-      this.dropdownLeftOffset = e.clientX - 210;
-      this.dropdownTopOffset = e.clientY - 160;
-    } else {
-      this.dropdownLeftOffset = e.clientX - 10;
-      this.dropdownTopOffset = e.clientY - 10;
-    }
-
-    this.showDropdown = true;
-    this.dropdownPlaylistId = item['id'];
-    this.editDropdownItems(item);
-  }
 
   addTrackToPlaylist(playlist) {
-    this.playlistService.addTrackToPlaylist(this.dropdownPlaylistId, playlist['id']);
+    this.playlistService.addTrackToPlaylist(this.currentDropDownTrack['id'], playlist['id']);
 
     for (let i = 0; i < this.filteredItems.length; i++) {
-      if (this.filteredItems[i]['id'] === this.dropdownPlaylistId) {
-        this.filteredItems[i] = this.musicService.getMusicTrackById(this.dropdownPlaylistId);
+      if (this.filteredItems[i]['id'] === this.currentDropDownTrack['id']) {
+        this.filteredItems[i] = this.musicService.getMusicTrackById(this.currentDropDownTrack['id']);
         this.editDropdownItems(this.filteredItems[i]);
       }
     }
@@ -155,6 +171,7 @@ export class EtTableComponent implements OnInit {
     if (!sortingAsc) {
       this.filteredItems.reverse();
     }
+
     this.playbackService.tracks = this.filteredItems.slice(0);
 
   }
@@ -189,9 +206,22 @@ export class EtTableComponent implements OnInit {
 
     if (column['type'] === 'track') {
       return item[column['name']].split('/')[0];
+    } else if (column['type'] === 'played') {
+      return this.timeAgoPipe.transform(item[column['name']]);
     } else {
       return item[column['name']];
     }
+
+  }
+
+  dropDownItemClicked(track) {
+
+    if (track['type'] === 'favourited') {
+      this.favourite(this.currentDropDownTrack);
+    } else {
+      this.addTrackToPlaylist(track);
+    }
+    this.showDropdown = false;
 
   }
 
@@ -235,19 +265,21 @@ export class EtTableComponent implements OnInit {
 
   }
 
-  favourite(e, item) {
-    e.stopImmediatePropagation();
+  favourite(track, e = null) {
+   if (e) {
+     e.stopImmediatePropagation();
+   }
 
     for (let i = 0; i < this.filteredItems.length; i++) {
-      if (this.filteredItems[i]['id'] === item['id']) {
-        this.filteredItems[i]['favourited'] = !item['favourited'];
+      if (this.filteredItems[i]['id'] === track['id']) {
+        this.filteredItems[i]['favourited'] = !track['favourited'];
         if (this.options['type'] === 'favourites') {
           this.filteredItems.splice(i, 1);
         }
       }
     }
 
-    this.musicService.setFavourite(item, item['favourited']);
+    this.musicService.setFavourite(track, track['favourited']);
   }
 
   trackClicked(newTrack) {

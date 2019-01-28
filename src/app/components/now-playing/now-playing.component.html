@@ -5,16 +5,30 @@
     <div class="now-playing__heading">Now playing</div>
     <div [class]="setIconClasses()" class="now-playing__icon fas fa-random"></div>
 
-    <ng-scrollbar  #scrollRef barClass="scrollbar__bar" thumbClass="scrollbar__thumb">
+    <ng-scrollbar #scrollRef barClass="scrollbar__bar" thumbClass="scrollbar__thumb">
+
       <ng-container *ngFor="let track of musicQueue">
-        <div [class]="setItemClasses(track)">
-          <img class="now-playing__img" [src]="'/assets/img/albums/' + track['album-dashed'] + '.png'" alt="">
+        <div [class]="setItemClasses(track)" (click)="playTrack(track)">
+          <div class="now-playing__img" [ngStyle]="{'background': track['picture'] ? 'url(' + fileReaderService.albumImagePath + '/' + track['album-dashed'] + '.jpeg) center center / cover' : 'url(assets/img/albums/album-placeholder4.png) center center / cover'}"></div>
           <div class="now-playing__container">
             <div class="now-playing__title">{{ track['title'] }}</div>
             <div class="now-playing__artist">{{ track['artist'] }}</div>
           </div>
         </div>
       </ng-container>
+
+      <ng-container *ngFor="let tomato of [0,0,0,0,0,0,0,0,0,0,0]">
+      <div class="now-playing-placeholder__item" *ngIf="musicQueue.length === 0">
+        <div class="now-playing-placeholder__img"></div>
+        <div class="now-playing-placeholder__container">
+          <div class="now-playing-placeholder__title"></div>
+          <div class="now-playing-placeholder__artist"></div>
+        </div>
+
+      </div>
+
+      </ng-container>
+
     </ng-scrollbar>
 
   </div>
@@ -23,11 +37,21 @@
 
     <div class="now-playing__heading">Track information</div>
 
-    <div class="now-playing-info__img"
-         [ngStyle]="{'background': 'linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0)), url(assets/img/albums/' + playingTrack['album-dashed'] + '.png) center center / cover'}"></div>
-    <div class="now-playing-info__title">{{ playingTrack['title'] }}</div>
-    <div class="now-playing-info__album">{{ playingTrack['album'] }}</div>
-    <div class="now-playing-info__artist">{{ playingTrack['artist'] }}</div>
+    <div class="now-playing-info__img" *ngIf="playingTrack['title']" [ngStyle]="{'background': playingTrack['picture'] ? 'url(' + fileReaderService.albumImagePath + '/' + playingTrack['album-dashed'] + '.jpeg) center center / cover' : 'url(assets/img/albums/album-placeholder4.png) center center / cover'}"></div>
+
+    <div class="now-playing-info__title" *ngIf="playingTrack['title']">{{ playingTrack['title'] }}</div>
+    <div class="now-playing-info__album" *ngIf="playingTrack['title']">{{ playingTrack['album'] }}</div>
+    <div class="now-playing-info__artist" *ngIf="playingTrack['title']">{{ playingTrack['artist'] }}</div>
+
+
+    <div class="now-playing-info-placeholder" *ngIf="!playingTrack['title']">
+
+      <div class="now-playing-info-placeholder__img"></div>
+      <div class="now-playing-info-placeholder__title"></div>
+      <div class="now-playing-info-placeholder__album"></div>
+      <div class="now-playing-info-placeholder__artist"></div>
+
+    </div>
 
   </div>
 

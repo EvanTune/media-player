@@ -1,11 +1,18 @@
 <div class="album">
 
   <div class="album__container">
-    <div class="album__img" *ngIf="album" [ngStyle]="{'background': 'url(assets/img/albums/' + album[0]['album-dashed'] + '.png) center center / cover'}"></div>
+    <div class="album__img" [ngStyle]="{'background': album[0]['picture'] ? 'url(' + fileReaderService.albumImagePath + '/' + album[0]['album-dashed'] + '.jpeg) center center / cover' : 'url(assets/img/albums/album-placeholder4.png) center center / cover'}"></div>
 
     <div class="album__info">
-      <div class="album__title">{{ album[0]['album'] }}</div>
-      <div class="album__artist">{{ album[0]['artist'] }}</div>
+      <div class="album__top">
+        <div class="album__title">{{ album[0]['album'] }}</div>
+        <div class="album__artist">{{ album[0]['artist'] }}</div>
+      </div>
+      <div class="album__bottom">
+        <button class="album__btn album__btn--play fas fa-play" (click)="playAlbum()"></button>
+        <span class="album__separator"></span>
+        <span class="album__time"> <span class="album__time-icon fas fa-clock"></span> {{ totalAlbumTime }}</span>
+      </div>
     </div>
   </div>
 

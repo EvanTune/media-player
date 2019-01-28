@@ -1,11 +1,19 @@
 <div class="albums">
 
+  <app-empty *ngIf="albums.length === 0" [text]="'No albums found.'"></app-empty>
+
   <ng-container *ngFor="let item of albums">
-  <div class="albums__item" [routerLink]="'/music/album/' + item['album'] + '/artist/' + item['artist']">
-    <div class="albums__img" [ngStyle]="{'background': 'url(assets/img/albums/' + item['album-dashed'] + '.png) center center / cover'}"></div>
-    <div class="albums__album">{{ item['album'] }}</div>
-    <div class="albums__artist">{{ item['artist'] }}</div>
-  </div>
+    <div class="albums__item"
+         (click)="musicService.goToPage('/' + path + '/album/' + item['album'] + '/artist/' + item['artist'], this.router, true)">
+      <div class="albums__img"
+           [ngStyle]="{'background': item['picture'] ? 'url(' + fileReaderService.albumImagePath + '/' + item['album-dashed'] + '.jpeg) center center / cover' : 'url(assets/img/albums/album-placeholder4.png) center center / cover'}"></div>
+      <div class="albums__album">{{ item['album'] }}</div>
+      <div class="albums__artist">{{ item['artist'] }}</div>
+    </div>
   </ng-container>
 
 </div>
+
+
+
+

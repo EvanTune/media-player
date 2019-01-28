@@ -44,7 +44,6 @@ import { NowPlayingComponent } from './components/now-playing/now-playing.compon
 import { EtTableComponent } from './components/et-table/et-table.component';
 import { AlbumComponent } from './components/album/album.component';
 import { ArtistComponent } from './components/artist/artist.component';
-import { RecentlyPlayedComponent } from './components/recently-played/recently-played.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MainComponent } from './components/main/main.component';
 import { GeneralComponent } from './components/settings/general/general.component';
@@ -56,13 +55,8 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { PlaylistModalComponent } from './components/playlist-modal/playlist-modal.component';
 
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
+import { MomentModule } from 'ngx-moment';
+import { EmptyComponent } from './components/empty/empty.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -94,7 +88,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     EtTableComponent,
     AlbumComponent,
     ArtistComponent,
-    RecentlyPlayedComponent,
     SettingsComponent,
     MainComponent,
     GeneralComponent,
@@ -104,7 +97,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProgressComponent,
     FavouritesComponent,
     DropdownComponent,
-    PlaylistModalComponent
+    PlaylistModalComponent,
+    EmptyComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,7 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     VgOverlayPlayModule,
     VgBufferingModule,
     NgScrollbarModule,
-    PerfectScrollbarModule,
+    MomentModule,
     NgxDatatableModule,
     TranslateModule.forRoot({
       loader: {
@@ -126,10 +120,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService,     {
-    provide: PERFECT_SCROLLBAR_CONFIG,
-    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-  }],
+  providers: [ElectronService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

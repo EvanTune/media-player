@@ -7,11 +7,23 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProgressComponent implements OnInit {
 
-  @Input() showProgress;
+  @Input() progressInfo;
+  dots = '';
 
   constructor() { }
 
   ngOnInit() {
+    this.addDots();
+  }
+
+  addDots() {
+    setInterval(() => {
+      if (this.dots.length < 3) {
+        this.dots += '.';
+      } else {
+        this.dots = '';
+      }
+    }, 450);
   }
 
 }

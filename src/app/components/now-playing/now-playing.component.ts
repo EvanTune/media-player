@@ -1,7 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MusicService} from '../../services/music.service';
 import {PlaybackService} from '../../services/playback.service';
 import {NgScrollbar, ScrollToOptions} from 'ngx-scrollbar';
+import {FileReaderService} from '../../services/file-reader.service';
 
 @Component({
   selector: 'app-now-playing',
@@ -20,7 +21,8 @@ export class NowPlayingComponent implements OnInit {
 
   constructor(
     private musicService: MusicService,
-    private playbackService: PlaybackService
+    private playbackService: PlaybackService,
+    public fileReaderService: FileReaderService
   ) {
   }
 
@@ -28,18 +30,14 @@ export class NowPlayingComponent implements OnInit {
 
     // Update queue and scroll when queue changes
     this.playbackService.queue.subscribe(() => {
-
       this.musicQueue = this.playbackService.getMusicQueue();
       this.setScrollTop(0);
-
     });
 
     this.playbackService.playingTrack.subscribe((val) => {
-
       this.playingTrack = val;
       this.musicQueue = this.playbackService.getMusicQueue();
       this.setScrollTop(500);
-
     });
 
     // Set the shuffle icon
@@ -66,6 +64,10 @@ export class NowPlayingComponent implements OnInit {
 
   }
 
+  playTrack(track) {
+    this.playbackService.playNewTrack(track, false);
+  }
+
   setScrollTop(animation) {
 
     let index = 1;
@@ -81,7 +83,7 @@ export class NowPlayingComponent implements OnInit {
 
     if (index > 2) {
       // @ts-ignore
-      this.scrollRef.scrollTo({top: (index - 2) * 42 - 50, duration: animation}).subscribe();
+      this.scrollRef.scrollTo({top: (index - 2) * 44, duration: animation}).subscribe();
     } else {
       // @ts-ignore
       this.scrollRef.scrollTo({top: 0, duration: 0}).subscribe();

@@ -3,39 +3,50 @@
 .sidebar {
 
   background-color: $darker;
+  //background: linear-gradient(45deg, rgb(25, 25, 25), rgb(16, 16, 16));
   position: fixed;
   left: 0;
-  top: 34px;
-  bottom: 70px;
+  top: 37px;
+  bottom: 76px;
   width: 200px;
-  z-index: 10;
+  z-index: 17;
   overflow: auto;
 
   &__top {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 32px 25px 30px 25px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
-  &__menu {
-    color: #d7d7d7;
-    margin-right: 30px;
-    font-weight: 400;
-    padding-left: 25px;
+  &__setting,
+  &__search,
+  &__back {
+    font-weight: 600;
+    font-size: 14px;
+    color: #878787;
+    height: 22px;
+    width: 22px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: -4px;
   }
 
-  &__left {
+  &__search {
+    //margin-left: 25px;
+  }
+
+  &__back--active {
     color: white;
-    margin-right: 20px;
   }
 
-  &__left:hover {
-    cursor: pointer;
+  &__back--active:hover {
+    color: $primary;
   }
 
-  &__right {
-    color: grey;
+  &__setting:hover,
+  &__search:hover {
+    color: white;
   }
 
   &__heading {
@@ -57,7 +68,7 @@
   }
 
   &__item {
-    color: #a5a5a5;
+    color: #b9b9b9;
     font-size: 13px;
     font-weight: 500;
     padding: 6px 0;

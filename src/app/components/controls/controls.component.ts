@@ -32,7 +32,7 @@ export class ControlsComponent implements OnInit {
     if (check && this.shuffle) {
       this.setShuffle(false, false);
     }
-      this.playbackService.setMusicQueue();
+      this.playbackService.updateMusicQueue();
   }
 
   setShuffle(value, check) {
@@ -41,7 +41,7 @@ export class ControlsComponent implements OnInit {
     if (check && this.repeat) {
       this.setRepeat(false, false);
     }
-    this.playbackService.setMusicQueue();
+    this.playbackService.updateMusicQueue();
   }
 
   playNext() {

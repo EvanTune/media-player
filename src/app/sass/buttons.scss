@@ -1,29 +1,59 @@
 @import "variables";
 
+button:focus {
+  outline: none;
+}
+
 .button {
-
   background-color: #282828;
-  border-radius: 4px;
-  padding: 10px 40px;
-  font-weight: 400;
-  letter-spacing: 2px;
+  border-radius: 3px;
+  padding: 11px 18px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
   border: none;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: #ffffff;
+  box-shadow: 0 2px 10px 1px rgba(0,0,0,0.4);
   text-transform: uppercase;
-  font-size: 11px;
-
+  font-size: 10px;
 }
 
 .button--primary {
-  background: linear-gradient(45deg, $secondary, $primary);
+  background: linear-gradient(-45deg, $primary, $secondary);
   transition: 0.1s all;
 }
 
 .button--primary:hover {
-  transform: scale(1.05);
+  background: linear-gradient(-45deg, #ea7501, #cf4c00);
+}
+
+.button--danger {
+  background-color: #ff1a1a;
+}
+
+.button--danger:hover {
+  background-color: #e11919;
+}
+
+.button--danger:disabled:hover {
+  background-color: #ff1a1a;
+}
+
+.button:disabled {
+  opacity: 0.5;
+}
+
+.button--primary:hover {
 }
 
 .button--secondary {
 
+}
+
+.button--wide {
+  padding: 11px 36px;
+}
+
+.button--full {
+  width: 100%;
+  padding: 12px 18px;
 }

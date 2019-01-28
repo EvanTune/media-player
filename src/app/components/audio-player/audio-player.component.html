@@ -8,7 +8,7 @@
     </vg-controls>
 
     <audio [vgMedia]="media" #media id="singleAudio" preload="auto" crossorigin>
-      <source [src]="sanitizeUrl(trackInfo['path'])" type="audio/mp3">
+      <source [src]="sanitizeUrl(trackInfo['filePath'])" type="audio/mp3">
     </audio>
   </vg-player>
 

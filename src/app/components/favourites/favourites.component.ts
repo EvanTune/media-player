@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {VgAPI} from 'videogular2/core';
 import {PlaybackService} from '../../services/playback.service';
 import {MusicService} from '../../services/music.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-favourites',
@@ -16,13 +17,14 @@ export class FavouritesComponent implements OnInit {
     {header: 'Title', name: 'title', hide: '0', faded: false, sort: true, type: 'main'},
     {header: 'Album', name: 'album', hide: '1400', faded: true, sort: true},
     {header: 'Artist', name: 'artist', hide: '1400', faded: true, sort: true},
-    {header: 'Time', name: 'time', hide: '0', faded: true, sort: true}
+    {header: 'Duration', name: 'time', hide: '0', faded: true, sort: true}
   ];
   options = {type: 'favourites'};
 
   constructor(
     private playbackService: PlaybackService,
-    private musicService: MusicService
+    private musicService: MusicService,
+    private router: Router
   ) {
   }
 
@@ -32,8 +34,6 @@ export class FavouritesComponent implements OnInit {
       return el['favourited'];
     });
     this.playbackService.tracks = this.songs;
-
   }
-
 
 }

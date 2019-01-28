@@ -15,22 +15,22 @@
   }
 
   &__bottom {
-    height: 93px;
+    margin-bottom: -4px;
+    height: 145px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   &__left {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     width: 140px;
   }
 
   &__center {
     display: flex;
     align-items: center;
-    margin: 0 75px;
+    margin: 0 80px 0 80px;
   }
 
   &__right {
@@ -40,16 +40,16 @@
   }
 
   &__play {
-    font-size: 18px;
-    margin: 0 40px;
   }
 
   &__icon {
-    font-size: 18px;
+    font-size: 16px;
   }
+
 
   &__icon:hover {
     cursor: pointer;
+    color: $primary !important;
   }
 
   &__icon--active:before {
@@ -62,14 +62,21 @@
 
   &__icon--prev:before {
     content: "\f048" !important;
+    margin-left: 35px;
+    margin-right: 22px;
   }
 
   &__icon--next:before {
     content: "\f051" !important;
+    margin-right: 35px;
+    margin-left: 22px;
+  }
+
+  &__icon--next:before:hover {
+    color: $primary !important;
   }
 
   &__icon--shuffle:before {
-    margin-right: 25px;
     content: "\f074" !important;
   }
 
@@ -77,22 +84,29 @@
     content: "\f363" !important;
   }
 
-  &__total-time {
-    position: absolute;
+  &__time {
     display: flex;
-    right: 20px;
     align-items: center;
-    height: 69px;
   }
 
   &__current-time {
-    position: absolute;
     display: flex;
-    left: 20px;
     align-items: center;
-    height: 69px;
   }
 
+  &__slash {
+    color: #bebebe;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0 3px;
+  }
 
+  &__total-time {
+    display: flex;
+    align-items: center;
+  }
 
 }
+

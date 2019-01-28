@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MusicService} from '../../services/music.service';
 import {PlaylistService} from '../../services/playlist.service';
+import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-playlist-modal',
@@ -9,32 +11,70 @@ import {PlaylistService} from '../../services/playlist.service';
 })
 export class PlaylistModalComponent implements OnInit {
 
-  @Input() showModal;
-  @Output() newPlaylistCreated = new EventEmitter<boolean>();
-  @Output() closeModal = new EventEmitter();
+  showModal = false;
+  mode = 'new';
 
-  name = '';
-  desc = '';
-  icon = 'wolf';
+  editName = '';
+  editId = '';
+
+  newModal = {
+    name: '',
+    desc: '',
+    icon: 'wolf'
+  };
 
   status = '';
   errorMsg = '';
 
   constructor(
     private musicService: MusicService,
-    private playlistService: PlaylistService
+    private playlistService: PlaylistService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
+    this.playlistService.showplaylistModal.subscribe((val) => {
+      this.showModal = val['show'];
+      this.mode = val['mode'];
+
+      if (this.mode === 'new') {
+        this.newModal = {
+          name: '',
+          desc: '',
+          icon: 'wolf'
+        };
+      }
+    });
+
+    this.playlistService.editFieldsModal.subscribe((val) => {
+      this.newModal = val;
+      this.editName = val['name'];
+      this.editId = val['id'];
+    });
   }
 
   newPlaylist() {
-    if (this.name.length > 0) {
-      this.playlistService.newPlaylist(this.name, this.desc, this.icon);
-      this.newPlaylistCreated.emit(true);
+    if (this.newModal['name'].length > 0) {
+      const newPlaylist = this.playlistService.newPlaylist(this.newModal);
+      this.playlistService.playlistsUpdated.next(true);
+      this.playlistService.showplaylistModal.next({show: false, mode: 'new'});
       this.clearState();
+      this.router.navigate(['/playlist/' + newPlaylist['id']]);
     }
+  }
+
+  editPlaylist() {
+    this.playlistService.editPlaylist({
+      name: this.newModal['name'],
+      desc: this.newModal['desc'],
+      icon: this.newModal['icon'],
+      id: this.editId
+    });
+    this.playlistService.playlistUpdated.next(true);
+    this.playlistService.playlistsUpdated.next(true);
+    this.playlistService.showplaylistModal.next({show: false, mode: 'new'});
+    this.clearState();
   }
 
   setInputClasses() {
@@ -53,12 +93,12 @@ export class PlaylistModalComponent implements OnInit {
 
   checkInput() {
 
-    if (this.name.length === 0) {
+    if (this.newModal['name'].length === 0) {
 
       this.status = 'error';
       this.errorMsg = 'Playlist name cannot be empty.';
 
-    } else if (this.playlistService.playlistExists(this.name)) {
+    } else if (this.playlistService.playlistExists(this.newModal['name'], this.editName)) {
       this.status = 'error';
       this.errorMsg = 'Playlist name already exists.';
     } else {
@@ -67,26 +107,23 @@ export class PlaylistModalComponent implements OnInit {
 
   }
 
-  closeModalWindow() {
-    this.clearState();
-    this.closeModal.emit();
-  }
-
   clearState() {
-    this.name = '';
-    this.desc = '';
-    this.icon = 'wolf';
+    this.newModal = {
+      name: '',
+      desc: '',
+      icon: 'wolf'
+    };
     this.status = '';
   }
 
   setActiveImg(type) {
-    this.icon = type;
+    this.newModal['icon'] = type;
   }
 
   setImgClass(type) {
 
     let classes = 'playlist-modal__img';
-    if (type === this.icon) {
+    if (type === this.newModal['icon']) {
       classes += ' playlist-modal__img--active';
     }
     return classes;

@@ -3,11 +3,21 @@
 
 
     <div class="playlist__container">
-      <img class="playlist__img" [src]="'/assets/img/icons/' + playlist['icon'] + '.png'" alt="">
+      <img class="playlist__img" [src]="'assets/img/icons/' + playlist['icon'] + '.png'" alt="">
       <div class="playlist__content">
-        <div class="header-main">{{ playlist['name']}}</div>
-        <p class="playlist__desc">{{ playlist['desc'] }}</p>
-        <button class="button button--primary">Play</button>
+        <div class="playlist__top">
+          <div class="header-main">{{ playlist['name']}}</div>
+          <p class="playlist__desc">{{ playlist['desc'] }}</p>
+        </div>
+        <div class="playlist__bottom">
+          <button class="playlist__btn playlist__btn--play fas fa-play" (click)="playCurrentList()"></button>
+          <button class="playlist__btn playlist__btn--edit fas fa-pencil" (click)="openEditPlaylistModal()"></button>
+          <button class="playlist__btn playlist__btn--delete fas fa-trash" (click)="deletePlaylist()"></button>
+          <span class="playlist__separator"></span>
+          <div class="playlist__time"><span class="fas fa-clock playlist__time-icon"></span> {{ totalAlbumTime }}</div>
+        </div>
+
+
       </div>
     </div>
 
@@ -16,6 +26,7 @@
                     [items]="playlist['tracks']"
                     [columns]="columns"
                     [options]="options"
+                    [emptyText]="'No songs found in playlist.'"
       ></app-et-table>
     </div>
 

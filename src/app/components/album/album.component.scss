@@ -1,3 +1,5 @@
+@import "../../sass/variables";
+
 .album {
   position: absolute;
   left: 0;
@@ -5,10 +7,19 @@
   bottom: 200px;
   right: 0;
 
+  &__top {
+    margin-bottom: 40px;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+  }
+
   &__container {
     display: flex;
     align-items: center;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 30px;
   }
 
@@ -16,24 +27,72 @@
     height: 170px;
     width: 170px;
     border-radius: 2px;
-    border: 1px solid black;
+    border: 1px solid #2d2d2d;
   }
 
   &__info {
-    margin-left: 60px;
+    margin-left: 30px;
   }
 
-
   &__title {
-    color: #ebebeb;
+    color: white;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
     letter-spacing: 1px;
+    font-size: 20px;
   }
 
   &__artist {
-    color: #878787;
+    color: #d6d6d6;
+    font-size: 13px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  &__btn {
+    height: 40px;
+    width: 40px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 20px;
+    color: #d7d7d7;
+    background-color: #323232;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    transition: 0.1s all;
+    border: 2px solid transparent;
+  }
+
+  &__btn:hover {
+    border: 2px solid #ffffff;
+  }
+
+  &__btn--play {
+    background: linear-gradient(45deg, $primary, $secondary);
+    color: white;
+  }
+
+  &__time {
+    color: #c3c3c3;
+    display: inline-block;
+    margin-left: 20px;
+    font-weight: 600;
     font-size: 14px;
+  }
+
+  &__time-icon {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &__separator {
+    height: 30px;
+    width: 1px;
+    background-color: #828282;
+    display: inline-block;
   }
 
 }

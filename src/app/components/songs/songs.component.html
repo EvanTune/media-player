@@ -1,11 +1,14 @@
 <div class="songs">
 
-  <!--<button (click)="musicService.tesy()">ff</button>-->
   <app-et-table
     [items]="songs"
     [columns]="columns"
-    [options]="options">
+    [options]="options"
+    [emptyText]="''">
   </app-et-table>
 
+  <app-empty *ngIf="songs.length === 0" [text]="'No songs found. Add music folders in settings.'"></app-empty>
+
 </div>
+
 

@@ -1,7 +1,9 @@
 <div class="artists">
 
+  <app-empty *ngIf="artists.length === 0" [text]="'No artists found.'"></app-empty>
+
   <ng-container *ngFor="let artist of artists">
-    <div class="artists__item" [routerLink]="'/music/artist/' + artist['artist']">
+    <div class="artists__item" (click)="musicService.goToPage('/music/artist/' + artist['artist'], this.router, true)">
       <div class="artists__img" [ngStyle]="{'background': 'url(assets/img/artists/' + artist['artist-dashed'] + '.jpg) center center / cover'}"></div>
       <div class="artists__name">{{ artist['artist'] }}</div>
     </div>

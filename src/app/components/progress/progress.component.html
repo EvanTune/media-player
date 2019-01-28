@@ -1,14 +1,23 @@
-<div *ngIf="showProgress" class="progress">
+<div class="progress">
 
   <div class="progress__window">
 
-    <img class="progress__loader" src="/assets/img/loaders/loader2.gif" alt="">
+    <!--
+    <img class="progress__loader" src="/assets/img/loaders/25.gif" alt=""> -->
 
-      <div class="progress__heading">
-        Scanning through folders for music files ...
+    <div class="progress__text">
+      <div class="progress__status">
+        Scanning through folders for music files <div class="progress__dots">{{ dots }}</div>
       </div>
+      <div class="progress__percent">{{ progressInfo['percent'] }}</div>
+    </div>
+
+    <div class="progress__bar-bg">
+      <div class="progress__bar" [ngStyle]="{width: progressInfo['percent']}"></div>
+    </div>
 
   </div>
+
 
 
 </div>

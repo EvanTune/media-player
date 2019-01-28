@@ -1,16 +1,29 @@
-
-<app-progress [showProgress]="showProgress"></app-progress>
+<app-progress *ngIf="showProgress" [progressInfo]="progressInfo"></app-progress>
 
 <div class="music-folders">
 
-  <button class="music-folders__add-folders" (click)="addFolders()"><i class="music-folders__add-folders-icon fas fa-plus"></i> Add folders</button>
+  <button class="button button--primary music-folders__add-folders" (click)="openFoldersDialog()"><i
+    class="music-folders__add-folders-icon fas fa-plus"></i> Add folders
+  </button>
+  <button class="button button--danger music-folders__remove-folders" (click)="removeFolders()"
+          [disabled]="foldersSelected.length === 0"><i
+    class="music-folders__add-folders-icon fas fa-trash"></i> Remove selected
+  </button>
 
-  <button class="music-folders__scan-folders" (click)="scanAudioFiles()"><i class="music-folders__scan-folders-icon fas fa-search"></i> Scan folders for music</button>
 
   <ul class="music-folders__list">
-    <li class="music-folders__item" *ngFor="let folder of musicFolders; let i = index" (click)="removeFolder(i)">
-      <i class="music-folders__icon fas fa-folder"></i> {{ folder }}
-    </li>
+    <ng-scrollbar barClass="scrollbar__bar" thumbClass="scrollbar__thumb" [autoUpdate]="true">
+      <div class="music-folders__empty" *ngIf="folders.length === 0">No music Folders are currently added.</div>
+
+      <li class="music-folders__item" *ngFor="let folder of folders; let i = index" (click)="folderItemClicked(folder, i)">
+
+        <input [id]="i" type="checkbox" [checked]="folder['checked']">
+        <label [for]="i" style="pointer-events: none"></label>
+        <i class="music-folders__icon"></i> {{ folder['folderPath'] }}
+
+      </li>
+    </ng-scrollbar>
   </ul>
+
 
 </div>
